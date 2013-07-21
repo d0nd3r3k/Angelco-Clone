@@ -1,0 +1,37 @@
+extends layout
+
+block content
+	.navbar.navbar-fixed-top
+		.navbar-inner
+			.container
+				a.brand(href='#') Arab
+					span Angels
+				form.form-search
+					.input-prepend
+						button(type="submit", class="btn btn-small")
+							span.fui-search
+						input(type="text", class=" small search-query search-query-rounded", placeholder="Search")
+				ul.links
+					li
+						a(href="/join", class="auth") Join
+					li
+						a(href="/login", class="auth login") Log In
+	.sub-nav
+		.container
+			ul.nav-menu
+				li
+					a(href="/", class="active") Home
+				li
+					a(href="/startups") Startups
+				li
+					a(href="/entrepreneurs") Entrepreneurs
+				li
+					a(href="/angels") Angel Investors
+	#map-wrapper
+		#map
+	.big-title
+		h2 Where startups & investors intersect
+		h4 Join us now, it's Free.
+		button(class="btn btn-inverse btn-wide btn-embossed") Register
+
+					
