@@ -130,9 +130,17 @@ top: -25px;
 .big-title h4{
 	color:#16a085;
 }
-
-
-
+.subscription-form .control-label{
+	font-size: 18px;
+	padding-top: 10px;
+}
+.subscription-form .modal-body{
+	padding: 20px 60px 20px;	
+}
+.subscription-form .checkbox-group{
+	margin-left: 75px;
+	margin-top: 30px;
+}
 
 
 

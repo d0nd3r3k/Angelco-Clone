@@ -37,9 +37,35 @@ block content
 	.modal.fade.hide#subscribe
 		.modal-header
 			button(type="button", class="close fui-cross", data-dismiss="modal", aria-hidden="true")
-			h3 Modal Header
-		.modal-body
-			p Hello, World
-		.modal-footer
-			a(class="btn btn-wide", href="#") Cancel
-			a(class="btn btn-wide btn-primary", href="#") Register Now.
+			h3 Join our Angel Network Today.
+		form.form-horizontal.subscription-form
+			.modal-body
+					.control-group
+						label(class="control-label", for="inputName") Full Name:
+						.controls
+							input(type="text", id="inputName", placeholder="What people call you")
+					.control-group
+						label(class="control-label", for="inputEmail") Email:
+						.controls
+							input(type="text", id="inputEmail", placeholder="please enter your email")
+					.control-group
+						label(class="control-label", for="inputCountry") Country:
+						.controls
+							input(type="text", id="inputCountry", placeholder="Where you from ?")
+					.control-group.checkbox-group
+						label.checkbox.primary
+							span.icons
+								span.first-icon.fui-checkbox-unchecked
+								span.second-icon-fui-checkbox-checked
+							input(type="checkbox", value="", data-toggle="checkbox")
+							span I have invested before
+
+						label.checkbox.primary
+							span.icons
+								span.first-icon.fui-checkbox-unchecked
+								span.second-icon-fui-checkbox-checked
+							input(type="checkbox", value="", data-toggle="checkbox")
+							span I'm interested in investing in startup companies	
+			.modal-footer
+				a(class="btn btn-wide", href="#") Cancel
+				a(class="btn btn-wide btn-primary", href="#") Register Now.
