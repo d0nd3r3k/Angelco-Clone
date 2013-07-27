@@ -10,12 +10,12 @@ block content
 					.input-prepend
 						button(type="submit", class="btn btn-small")
 							span.fui-search
-						input(type="text", class=" small search-query search-query-rounded", placeholder="Search")
+						input(type="text", class=" small search-query", placeholder="Search")
 				ul.links
 					li
-						a(href="/join", class="auth") Join
+						a(href="/join", class="auth", data-toggle="modal", href="#subscribe") Join
 					li
-						a(href="/login", class="auth login") Log In
+						a(href="/login", class="auth login", data-toggle="modal", href="#subscribe") Log In
 	.sub-nav
 		.container
 			ul.nav-menu
@@ -32,6 +32,14 @@ block content
 	.big-title
 		h2 Where startups & investors intersect
 		h4 Join us now, it's Free.
-		button(class="btn btn-inverse btn-wide btn-embossed") Register
+		button(class="btn btn-inverse btn-wide btn-embossed", data-toggle="modal", href="#subscribe") Register
 
-					
+	.modal.fade#subscribe
+		.modal-header
+			button(type="button", class="close fui-cross", data-dismiss="modal", aria-hidden="true")
+			h3 Modal Header
+		.modal-body
+			p Hello, World
+		.modal-footer
+			a(class="btn btn-wide", href="#") Cancel
+			a(class="btn btn-wide btn-primary", href="#") Register Now.

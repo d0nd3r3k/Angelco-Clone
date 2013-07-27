@@ -85,7 +85,7 @@ ul.links li a:hover{
 	top: 57px;
 	width: 100%;
 	background: #34495e;
-	z-index: 9999;
+	z-index: 1030;
 }
 ul.nav-menu{
 	padding: 10px 0;

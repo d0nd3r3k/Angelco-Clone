@@ -54,7 +54,7 @@ $(function() {
 				zoomControl: false,
 				scrollwheel: false,
 				disableDoubleClickZoom: true,
-				zoom: 14,
+				zoom: 5,
 				center: new google.maps.LatLng(33.884596,35.502563),
 				disableDefaultUI: true,
 				mapTypeControlOptions: {
