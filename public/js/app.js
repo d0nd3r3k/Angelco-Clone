@@ -80,49 +80,43 @@ var app = {
 	    return pattern.test(emailAddress);
 		},
 	isValid: function(el){
-		var inputVal = $(el).val(),
-			isValid = false;
-
+		var inputVal = $(el).val();
 			if(inputVal.length <= 2 ){
 				$(el).parent().parent('.control-group').addClass('error');	
-				isValid = false;
 			}
 			else{
 				$(el).parent().parent('.control-group').removeClass('error');		
-				isValid = true;
 			}
-		return isValid;	
 	},	
 	subscribe: function(){
-		var app = this,
-			isValid = false;
+		var app = this;
 
 		//Validate Email
 		$('#inputEmail').on('change', function(){
 			var email = $(this).val();	
 			if(!app.validateEmail(email)){
 				$(this).parent().parent('.control-group').addClass('error');
-				isValid = false;
 			}
 			else if(app.validateEmail(email)){
 				$(this).parent().parent('.control-group').removeClass('error');	
-				isValid = true;
 			}
 		});
 		
 		//Validate required fields
 		$('.subscription-form input[type=text]').on('change', function(){
-			isValid = app.isValid(this);
+			app.isValid(this);
 		});
 
 		//Submit From to the server
 		$('.subscription-form').on('submit', function(e){
-
 			e.preventDefault();
+			$('input[type=text], input[type=email]').each(function(){
+				app.isValid(this);
+			});
 			var form = $(this),
 				action = form.attr('action');
 
-			if(isValid){
+			if(!$('.control-group').hasClass('error')){
 				$.ajax(action,{
 					dataType:'json',
 					type:'POST',
