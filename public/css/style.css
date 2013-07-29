@@ -66,7 +66,7 @@ ul.links{
 	float: right;
 	font-size: 1em;
 	padding: 18px 20px;
-	font-family: "Lato-Light";
+	font-family: "Lato-Light", Arial, sans-serif;
 }
 ul.links li{
 	display: inline;
@@ -107,7 +107,7 @@ ul.nav-menu li{
 }
 ul.nav-menu li a{
 	color:#EEEEEE;
-	font-family: "Lato-Light", sans-serif;
+	font-family: "Lato", Arial, sans-serif;
 }
 ul.nav-menu li a:hover, ul.nav-menu li a.active{
 	color:#16a085;
