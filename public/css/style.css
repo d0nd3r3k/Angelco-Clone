@@ -228,18 +228,26 @@ top: -50px;
 
 @media all and (max-width: 620px){
 	.big-title{
-		top: 184px;
+		top: 104px;
 	}
 	.big-title h2 {
-		font-size: 3em;
+		font-size: 2.5em;
 	}
 }
 
 @media all and (max-width: 400px){
-	 .modal {
-    top: 10px;
-    right: 10px;
-    left: 10px;
+	.nav-menu{
+		display: none;
+	}
+	#map{
+		top:58px;
+	}
+  .modal {
+    position: absolute;
+    right: 20px;
+    left: 20px;
+    width: auto;
+    margin: 0;
   }
   .modal-header .close {
     padding: 10px;
@@ -264,7 +272,7 @@ top: -50px;
 	margin-bottom: 0px;
   }
    .subscription-form .modal-body {
-	padding: 10px 60px 20px;
+	padding: 10px 20px 20px;
 	}
 	.modal .reset-form{
 		display: none;
