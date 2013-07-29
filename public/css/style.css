@@ -1,3 +1,8 @@
+html {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
 @font-face {
   font-family: 'Lato-Light';
   font-style: normal;
