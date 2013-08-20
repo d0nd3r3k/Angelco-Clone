@@ -1,6 +1,6 @@
 var app = {
 	init: function(){
-		this.initMap();
+		//this.initMap();
 		this.subscribe();
 	},
 	initMap: function(){
@@ -50,11 +50,15 @@ var app = {
 		name: "Styled Map"
 	});
 	var mapOptions = {
+		mapTypeControl:false,
+		streetViewControl: false,
+		panControl:false,
+		rotateControl:false,
 		draggable: false,
 		zoomControl: false,
 		scrollwheel: false,
 		disableDoubleClickZoom: true,
-		zoom: 15,
+		zoom: 14,
 		disableDefaultUI: true,
 		mapTypeControlOptions: {
 			mapTypeIds: [google.maps.MapTypeId.ROADMAP, "map_style"]
