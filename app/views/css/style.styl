@@ -1,0 +1,658 @@
+aa-blue = #34495e
+//aa-gray = #ecf0f1
+aa-gray = #FEFEFE
+aa-light-blue = #3498db
+aa-dark-blue = #2c3e50
+aa-dark-green = #16a085
+
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+
+animation()
+	-webkit-animation arguments
+	-moz-animation arguments
+	-ms-animation arguments
+	-o-animation arguments
+	animation arguments
+
+box-shadow()
+	-webkit-box-shadow arguments
+	-moz-box-shadow arguments
+	box-shadow arguments	
+
+transition()
+	-webkit-transition arguments
+	-moz-transition arguments
+	-o-transition arguments
+	transition arguments
+
+/*AA Flat-UI*/
+body
+	background-color aa-blue
+	font-family "Lato"	
+
+form
+	margin 0
+
+ul
+	list-style none
+	margin 0
+
+a
+	color aa-dark-blue
+
+.navbar .brand
+	padding 14px 0
+	color aa-blue
+
+.navbar-inner
+	background aa-gray
+
+.gmnoprint
+	display none
+
+/*Other*/
+ul.links
+	float right
+	font-size 1em
+	padding 18px 0
+	font-weight 300
+
+ul.links li
+	display inline
+	margin-left 12px
+
+ul.links li a:hover
+	text-decoration underline
+
+.form-search
+	float left
+	margin-top 11px
+	position absolute
+	left 50%
+	margin-left -172px
+
+.form-search input
+	width 300px
+
+.form-search.focus.btn
+	color aa-light-blue
+
+.sub-nav
+	position fixed
+	top 57px
+	width 100%
+	background aa-blue
+	z-index 1030
+
+ul.nav-menu
+	padding 10px 0
+	text-align center
+	margin-left 20px
+
+ul.nav-menu li
+	display inline-block
+	margin-right 10px
+	margin-right 22px
+
+ul.nav-menu li a
+	color #EEEEEE
+	font-weight 300
+	font-size 14px
+
+ul.nav-menu li a:hover, ul.nav-menu li a.active
+	color aa-dark-green
+
+#map-wrapper
+	position relative
+	opacity 0.9
+
+#map 
+	width 100%
+	background-color #323237 !important
+	top 97px
+
+#map div 
+	top -25px
+
+.big-title
+	position absolute
+	text-align center
+	top 230px
+	width 100%
+
+.big-title h2
+	font-weight 300
+	color aa-gray
+
+.big-title h4
+	color aa-dark-green
+
+.subscription-form .control-label
+	font-size 18px
+	padding-top 10px
+
+.subscription-form .modal-body
+	padding 20px 60px 20px	
+
+.subscription-form .checkbox-group
+	margin-left 75px
+	margin-top 30px
+
+.clearfix
+	clear both
+
+.main-wrapper 
+	padding 20px 0
+	background aa-gray
+	margin-top 110px
+	margin-bottom 20px
+	opacity 0.9
+	box-shadow(rgba(0,0,0,0.05) 0 1px 3px 0)
+
+.aa-rounded
+	border-radius(6px)
+
+.join-wrapper
+	text-align center
+
+.signup a
+	text-align left
+	margin-top 10px
+	float left
+
+ul.social-login li
+	margin-left 12px
+	display inline
+
+.classic-login
+	margin-top 20px
+
+.classic-login a
+	color aa-dark-green
+
+.classic-login a:hover
+	text-decoration underline
+
+.signup
+	width 300px
+	position relative
+	left 50%
+	margin-left -150px
+
+.signup input[type=submit]
+	float left
+	margin-top 10px
+
+.signup input[type=text] , input[type=password], input[type=email] 
+	width 300px
+
+.signup label
+	text-align left
+
+.profile-img
+	box-shadow(-9px 9px 0 0 rgba(0, 0, 0, 0.7))
+	border-radius(4px)
+	height 80px
+	width 80px
+	float left
+
+.profile-default-img
+	font-size 65px
+	text-align center
+	border 2px solid aa-blue
+
+.profile
+	padding 20px 0
+
+.profile-wrapper
+	background aa-gray
+	width 100%
+	padding 20px 0
+	margin-top 98px
+	box-shadow(0px 9px 0 0 rgba(0, 0, 0, 0.3))
+
+.profile .user-type
+	margin-left 2px
+	color #c0392b
+	font-size 12px
+	text-transform uppercase
+
+.profile h4.name-title
+	font-weight bold
+	margin 0
+	line-height 1em
+	display block
+	text-transform capitalize
+
+.profile p
+	margin 0 0 2px
+	width 706px
+	line-height 1.2
+
+.profile-txt
+	float left
+	margin-top -6px
+	margin-left 10px
+
+ul.social-links li 
+	display inline
+	margin-left 4px
+	font-size 18px
+
+ul.social-links li a i
+	width 18px
+
+.profile-location 
+	text-transform lowercase
+	display inline
+
+.edit-profile
+	float right
+	width 54px
+	line-height 14px
+
+.edit-profile-wrapper
+	position relative
+
+.edit-profile-wrapper .row
+	margin 0
+
+.edit-profile-block h6
+	margin 0
+	display inline
+
+.edit-profile-block hr
+	margin 7px 0
+
+.edit-profile-block
+	width 400px
+
+.left
+	float left
+
+.right
+	float right
+
+ul.profile-btns
+	float right	
+	margin-top -57px
+
+.profile-btns li
+	display inline
+	margin-left 4px
+
+.add-startup
+	margin-top 3px
+
+.profile-block
+	border-radius(4px)
+	background aa-gray
+	margin 14px 0 0 0
+	padding 10px 20px
+	float left
+	min-height 280px
+
+.profile-block.last
+	margin-left 14px
+
+.profile-sidebar
+	width 306px
+
+.profile-block hr
+	margin 10px 0
+
+.profile-block h5
+	margin 0
+
+input.links
+	width 330px
+
+.type-form .checkbox, .radio 
+	transition(color 0.25s linear)
+	-webkit-backface-visibility hidden
+	margin-bottom 12px
+	padding-left 32px
+	position relative
+	width 154px
+	font-size 16px
+	margin 10px auto
+
+#type .modal-footer, .modal-header 
+	text-align center
+
+.startups-wrapper
+	margin-bottom 10px
+	text-align center
+	padding 0
+	margin 13px 0 30px 0
+	float left
+	width 100%
+	text-align center
+
+.startup-form, .media-form, .press-form
+	display none
+
+.startup-form textarea
+	width 400px 
+	height 100px
+	max-width 520px
+
+.startup-default-img
+	font-size 50px
+	text-align center
+	border 2px solid aa-blue
+	height 60px
+	width 60px
+	border-radius(4px)
+
+.startup-block
+	vertical-align top
+	display inline-block
+	width 113px
+	text-align center
+	margin-bottom 20px
+
+.startup-block .title
+	text-transform capitalize
+
+.startup-block .logo
+	margin 0 auto 10px
+
+.startup-block .popover-title 
+	background-color aa-dark-blue
+	color #ffffff
+	font-size 12px
+	font-weight 700
+	padding 4px 20px 4px
+	text-align center
+
+.popover
+	background aa-blue	
+	width 230px
+
+.popover.bottom 
+	margin-top 18px
+
+.popover-content 
+	padding 9px 20px 10px
+	background aa-blue
+	color aa-gray
+	text-align center
+
+.popover a 
+	color aa-dark-green
+
+.popover.bottom .arrow 
+	border-bottom-color aa-dark-blue
+
+.popover .popover-content p
+	font-size 14px
+	line-height 1.1
+	margin-top 10px
+
+.profile-block em
+	color #95a5a6
+
+.profile-block .description-txt
+	line-height 1.4
+	font-size 1.3em
+
+.founder-img
+	border-radius(50%)
+	width 60px
+	height 60px
+	font-size 40px
+	text-align center
+	border 2px solid aa-blue
+	margin 0px 10px 0px 4px
+	float left
+
+.founder-img i
+	margin-top 4px
+
+.founder-img img
+	border-radius(50%)
+	width 60px
+	height 60px
+
+.founder-txt
+	float left
+
+.founder-txt p
+	width 220px
+	font-size 13px
+	color aa-blue
+
+.founder-txt a
+	font-size 16px
+	font-weight bold
+
+.founders
+	margin-left 14px
+	min-height 134px
+
+.main-wrapper-block
+	float left
+
+.shorty
+	width 290px
+
+.edit-profile-wrapper .profile-btns
+	margin 0
+
+ul.pressItems a
+	color #7f8c8d
+	font-size 1.1em
+	font-weight 900
+
+ul.pressItems li 
+	line-height 20px
+	border-bottom 1px solid #7f8c8d
+	padding 7px 0
+
+ul.pressItems li a:hover
+	color #e74c3c
+
+.delPressItem
+	float right
+
+.uploadImage, .cropImage
+	text-align center
+
+.btn.btn-danger
+	background-color #ec7063
+	font-weight normal
+	margin-left 20px
+
+.btn.btn-danger:hover
+	background-color #e74c3c
+
+ul.thumbnails
+	width 300px
+	margin 10px auto
+
+.thumbnails > li 
+	float none
+	margin 0
+
+.allStarups, .allUsers
+	margin-top 100px
+	padding 20px
+	background white
+	border-radius 4px
+	min-height 300px
+
+.sBlock
+	border-radius(4px)
+	width 200px
+	min-height 263px
+	background-color #edeff1
+	border-top 2px solid #d6dbdf
+	padding 16px 10px
+	text-align center
+	margin-bottom 14px
+
+.sBlock .tagline
+	font-size 0.9em
+	line-height 1.2
+
+.sBlock hr
+	border-bottom 1px solid #d6dbdf
+
+.sBlock .sLogo
+	font-size 60px
+
+.sBlock .sLogo img
+	height 80px
+	width 80px
+	border-radius(50%)
+
+.sBlock:hover
+	opacity 0.7
+	cursor pointer
+
+.error-wrapper
+	text-align center
+
+.fui-search
+	height 16px
+	width 13px
+
+//jQuery Crop Plugin
+
+.jcrop-holder 
+	direction ltr
+	text-align left
+
+.jcrop-vline, .jcrop-hline 
+	background #ffffff url("Jcrop.gif")
+	font-size 0
+	position absolute
+
+.jcrop-vline 
+	height 100%
+	width 1px !important
+
+.jcrop-vline.right 
+	right 0
+
+.jcrop-hline 
+	height 1px !important
+	width 100%
+
+.jcrop-hline.bottom 
+	bottom 0
+
+.jcrop-tracker 
+	height 100%
+	width 100%
+	-webkit-tap-highlight-color transparent
+	-webkit-user-select none
+
+.jcrop-handle 
+	background-color #333333
+	border 1px #eeeeee solid
+	width 7px
+	height 7px
+	font-size 1px
+
+.jcrop-handle.ord-n 
+	left 50%
+	margin-left -4px
+	margin-top -4px
+	top 0
+
+.jcrop-handle.ord-s 
+	bottom 0
+	left 50%
+	margin-bottom -4px
+	margin-left -4px
+
+.jcrop-handle.ord-e 
+	margin-right -4px
+	margin-top -4px
+	right 0
+	top 50%
+
+.jcrop-handle.ord-w 
+	left 0
+	margin-left -4px
+	margin-top -4px
+	top 50%
+
+.jcrop-handle.ord-nw 
+	left 0
+	margin-left -4px
+	margin-top -4px
+	top 0
+
+.jcrop-handle.ord-ne 
+	margin-right -4px
+	margin-top -4px
+	right 0
+	top 0
+
+.jcrop-handle.ord-se 
+	bottom 0
+	margin-bottom -4px
+	margin-right -4px
+	right 0
+
+.jcrop-handle.ord-sw 
+	bottom 0
+	left 0
+	margin-bottom -4px
+	margin-left -4px
+
+.jcrop-dragbar.ord-n, .jcrop-dragbar.ord-s 
+	height 7px
+	width 100%
+
+.jcrop-dragbar.ord-e, .jcrop-dragbar.ord-w 
+	height 100%
+	width 7px
+
+.jcrop-dragbar.ord-n 
+	margin-top -4px
+
+.jcrop-dragbar.ord-s 
+	bottom 0
+	margin-bottom -4px
+
+.jcrop-dragbar.ord-e 
+	margin-right -4px
+	right 0
+
+.jcrop-dragbar.ord-w 
+	margin-left -4px
+
+.jcrop-light .jcrop-vline, .jcrop-light .jcrop-hline 
+	background #ffffff
+	opacity .70!important
+
+.jcrop-light .jcrop-handle 
+	border-radius(3px)
+	background-color #000000
+	border-color #ffffff
+	
+.jcrop-dark .jcrop-vline, .jcrop-dark .jcrop-hline 
+	background #000000
+	opacity 0.7 !important
+
+.jcrop-dark .jcrop-handle 
+	border-radius(3px)
+	background-color #ffffff
+	border-color #000000
+  
+.solid-line .jcrop-vline, .solid-line .jcrop-hline 
+	background #ffffff
+
+.jcrop-holder img, img.jcrop-preview 
+	max-width none
+/*End of Plugin*/
+
+.cropImage .thumbnail
+	min-height 290px

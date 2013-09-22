@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+	include ../nav
+
+	.container.allStarups
+		.row
+			.span12
+				.row
+					each startup in startups
+						- if(startup.logo !== "" && startup.logo.versions !== undefined && startup.logo.versions !== null)
+							startupLogo = startup.logo.versions[1].url
+						- else
+							startupLogo = ""
+						.span3.sBlock
+							.sLogo
+								a(href="/startups/"+startup.id, target="_BLANK")
+									if(startupLogo === "")
+										i.fui-plus-inverted
+									else
+										img(src=startupLogo)	
+							h6.title=startup.name
+							p.startup.tagline=startup.tagline
+							hr
+							a(href=startup.website, target="_BLANK")=startup.website
+

@@ -1,0 +1,17 @@
+mixin social(href, icon)
+		if(href !== "")
+			li
+				a(href=href, target="_BLANK")
+					i(class=icon)
+
+	mixin fields(iLabel,iType, iName, iPlaceholder, iValue, iClass)
+		.control-group
+			label(class="control-label")=iLabel
+			.controls
+				input(type=iType, class=iClass, name=iName, placeholder=iPlaceholder, value=iValue, novalidate)
+
+	mixin textarea(iLabel, iName, iClass, iRows, iPlaceholder, iValue)
+		.control-group
+			label(class="control-label")=iLabel
+			.controls
+				textarea(name=iName,class=iClass,rows=iRow,placeholder=iPlaceholder)=iValue

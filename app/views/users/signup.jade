@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+	include ../nav
+	include ../mixins
+	.container.main-wrapper.aa-rounded
+		.join-wrapper
+			h4 Create an Account
+			hr
+			p.error= errors
+			form.signup(id="signupForm", action='/users', method="post")
+				input(type='hidden', name='_csrf', value="#{csrf_token}")
+				mixin fields("Name:","text","name", "", "", "")
+				mixin fields("Email:","email","email", "", "", "")
+				mixin fields("Username:","text","username", "", "", "")
+				mixin fields("Password:","password","password", "", "", "")
+				input(class="btn btn-wide btn-primary",type="submit",id="submitFormBtn", value="Create Your Account")
+				.clearfix
+				a(href="/login") I already have an account

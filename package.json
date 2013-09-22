@@ -1,13 +1,41 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "Arab-Angels-Production",
+  "description": "Where starters and angels intersect",
+  "keywords": [
+    "express",
+    "mongoose",
+    "mongodb",
+    "passport"
+  ],
+  "version": "1.0.0",
   "private": true,
+  "author": "Donald Derek Haddad <donaldderek.haddad@gmail.com> (http://www.donaldderek.com)",
+  "engines": {
+    "node": "0.10.x",
+    "npm":  "1.2.x"
+  },
   "scripts": {
-    "start": "node app.js"
+    "start": "NODE_ENV=development ./node_modules/.bin/nodemon server.js"
   },
   "dependencies": {
-    "express": "3.1.1",
-    "jade": "*",
-    "mongoose": "3.6.x"
+    "express": "latest",
+    "jade": "latest",
+    "mongoose": "latest",
+    "connect-mongo": "latest",
+    "connect-flash": "latest",
+    "passport": "latest",
+    "passport-local": "latest",
+    "passport-facebook": "latest",
+    "passport-linkedin": "latest",
+    "passport-google-oauth": "latest",
+    "imager": "latest",
+    "notifier": "latest",
+    "underscore": "latest",
+    "async": "latest",
+    "view-helpers": "latest",
+    "jsdom":"latest",
+    "picsee":"latest",
+    "stylus":"latest",
+    "nib": "latest"
   }
 }

@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+	include ../nav
+
+	.container.main-wrapper.aa-rounded
+		.join-wrapper
+			h4 Sign Up
+			hr
+			ul.social-login
+				li
+					a.btn.btn-small.btn-social-googleplus(href="auth/google")
+						i.fui-googleplus  Connect with Google
+				li	
+					a.btn.btn-small.btn-social-facebook(href="auth/facebook")
+						i.fui-facebook  Connect with Facebook
+				li
+					a.btn.btn-small.btn-social-linkedin(href="auth/linkedin")
+						i.fui-linkedin  Connect with Linkedin
+			.classic-login
+				p Sign up with a social network to follow your friends and see the startups they're working on.
+				a(href="signup") Sign up without a social network
+				hr
+				p Already have an account? 
+					a(href="login") Login	

@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+	include ../nav
+	include ../mixins
+	.container.main-wrapper.aa-rounded
+		.join-wrapper
+			h4 Login
+			hr
+			p.error= message
+			form.signup(id="loginForm", action='/users/session', method="post")
+				input(type='hidden', name='_csrf', value="#{csrf_token}")
+				mixin fields("Email","text","email", "", "", "")
+				mixin fields("Password","password","password", "", "", "")
+				input(class="btn btn-wide btn-primary",type="submit",id="loginFormBtn", value="Log In")	
+				.clearfix	
+			hr			
+
+			ul.social-login
+				li
+					a.btn.btn-small.btn-social-googleplus(href="auth/google")
+						i.fui-googleplus  Connect with Google
+				li	
+					a.btn.btn-small.btn-social-facebook(href="auth/facebook")
+						i.fui-facebook  Connect with Facebook
+				li
+					a.btn.btn-small.btn-social-linkedin(href="auth/linkedin")
+						i.fui-linkedin  Connect with Linkedin
+			.classic-login
+				hr
+				p Need an account? 
+					a(href="/signup") Sign Up	

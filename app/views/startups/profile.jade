@@ -1,0 +1,200 @@
+extends ../layout
+
+block content
+	include ../nav
+	include ../mixins
+
+	- var name = founder.name
+	- var type = founder.type
+	- var isOwner = false
+	- var provider = founder.provider
+	- var profileImage = ''
+	- if(provider === 'google')
+		profileImage = founder.google.picture
+	- else if(provider === 'facebook')
+		profileImage = 'https://graph.facebook.com/'+founder.facebook.username+'/picture?type=large'
+	- else if(provider === 'linkedin')
+		profileImage = founder.linkedin.pictureUrl
+	- if(startup.logo !== "" && startup.logo.versions !== undefined && startup.logo.versions !== null)
+		startupLogo = startup.logo.versions[1].url
+	- else
+		startupLogo = ""
+	- if(message !== undefined)
+		p message	
+	- if(startup.user.id === req.user.id)
+		isOwner = true	
+
+	.profile-wrapper
+		if(isOwner)
+			span.loading.hide
+			.uploadImage.hide
+				form(action="/startups/upload/"+startup.id,method="post",id="upload",enctype="multipart/form-data")
+					input(type='hidden', name='_csrf', value="#{csrf_token}")
+					input(type="file", name="profPhoto", class="hide", id='inputFile')
+					.form-actions
+						a(href="#",id="triggerFile", class="btn btn-primary btn-embossed btn-huge btn-danger") Upload Image
+						input(type="submit", name="upload", class="btn btn-embossed btn-huge btn-danger hide", value="Upload Photo")
+
+			.cropImage.hide
+				form(action="/startups/crop/"+startup.id,method="post",id="crop")
+					input(type='hidden', name='_csrf', value="#{csrf_token}")
+					fieldset
+						legend click on the image below and drag
+						ul.thumbnails
+							li.span4
+								.thumbnail
+									img(class="pre-processed")
+						input(type="hidden",name="coordx1",id="coordx1")
+						input(type="hidden",name="coordy1",id="coordy1")
+						input(type="hidden",name="coordx2",id="coordx2")
+						input(type="hidden",name="coordy2",id="coordy2")
+						input(type="hidden",name="w",id="w")
+						input(type="hidden",name="h",id="h")
+						input(type="hidden",name="image")
+						input(type="hidden",name="original")
+						.form-actions
+								input(type="submit", name="crop", class="btn btn-embossed btn-huge btn-danger", value="Crop & Save")
+		.profile.container
+			.profile-content
+				if(startupLogo !== "")	
+					a.triggerUpload
+						img(src=startupLogo, class="profile-img")
+				else
+					a.triggerUpload
+						i.fui-plus-inverted.profile-default-img.profile-img	
+				.profile-txt
+					span.user-type Startup 
+					.profile-location
+						if(startup.location !== "")
+							-
+							span.location=startup.location
+					h4.name-title= startup.name
+					if(startup.tagline !== "")			
+						p.mini-resume=startup.tagline
+					else if(isOwner)
+						p.mini-resume Edit your profile to add a Tag Line	
+					ul.social-links
+						mixin social(startup.website, "fui-home")
+						mixin social(startup.links.blog, "fui-document")
+						mixin social(startup.links.googleplus, "fui-googleplus")
+						mixin social(startup.links.facebook, "fui-facebook")
+						mixin social(startup.links.twitter, "fui-twitter")
+
+				if(isOwner)
+					a.btn.btn-small.btn-primary.edit-profile.btn-embossed(href="#edit", id="editPorfile") Edit
+			if(isOwner)			
+				.edit-profile-wrapper.hide.container
+					form.edit-startup-form(action='/startups/edit/'+startup.id, method="POST")
+						input(type='hidden', name='_csrf', value="#{csrf_token}")
+						ul.profile-btns
+							li
+								a.btn.btn-small.btn-embossed(href="#cancel", id="cancel") Cancel
+							li	
+								input.btn.btn-small.btn-primary.btn-embossed(href="#save", type="submit", value="Save") 
+						.clearfix
+						.edit-profile-block.left
+							h6 Basics
+							hr
+							mixin fields("Startup Name","text","name", "", startup.name, "")
+							mixin fields("Tagline","text","tagline", "", startup.tagline, "")
+							mixin fields("Location","text","location", "eg. Byblos", startup.location, "")
+							mixin textarea("Description", "description", "span6", "3", "Tell us briefly about your startup...", startup.description)
+							
+						.edit-profile-block.right
+							h6 Links
+							hr
+							mixin fields("Website","text","website", "website url", startup.website, "links")
+							mixin fields("Blog","text","blog", "personal blog url", startup.links.blog, "links")
+							mixin fields("Google+","text","googleplus", "g+ url", startup.links.googleplus, "links")
+							mixin fields("Twitter","text","twitter", "twitter url", startup.links.twitter, "links")
+							mixin fields("Facebook","text","facebook", "facebook url", startup.links.facebook, "links")
+	.container										
+		.row.span7.profile-block	
+				h6 Description
+				hr
+				if(startup.description === "" && isOwner)	
+					.startup-default-description.description
+						em 
+							span What are you building? Start at the basics. Assume the reader doesn't know anything about what you do. 
+							a.add-description(href="#edit") Add a description
+				else
+					p.description-txt=startup.description			
+		
+		.row.profile-sidebar.profile-block.last
+			h6 Founders
+			hr			
+			.founder-block
+				.founder-img
+					if(profileImage !== "")	
+						a(href="/users/"+founder.id)
+							img(src=profileImage)
+					else
+						a(href="/users/"+founder.id)
+							i.fui-user
+				.founder-txt
+					a.name(href="/users/"+founder.id)=name
+					p.resume= founder.miniresume		
+		.row.span7.profile-block
+				if(isOwner)
+					button.add-item.btn.btn-small.right Add
+				h6 Media
+				hr
+				if(isOwner)
+					form.media-form(action="/startups/media/"+startup.id, method="POST")
+						ul.profile-btns
+									li
+										a.btn.btn-small.cancel-item(href="#cancel") Cancel
+									li	
+										input.btn.btn-small.btn-primary(href="#save", type="submit", value="Save")	
+						input(type='hidden', name='_csrf', value="#{csrf_token}")
+						
+						.clearfix
+						
+						mixin fields("Youtube Video ID","text","video", "http://www.youtube.com/watch?v=Youtube_ID", startup.video, "links")
+						
+						mixin fields("SlideShare Presentation","text","presentation", "Enter your SlideShare presentation url", "", "links")
+						
+				.startup-default-description.media-wrapper
+					if(startup.video === "" && startup.presentation === "" && isOwner)
+						em 
+							span Show off your startup. Show your audience a video that's the most efficient way to brand your product. Show potential Angels a presentation, that's a deal breaker.  
+					else 
+						if(startup.video !== "")
+							p Video
+							iframe(id="ytplayer",type="text/html",width="540",height="310",src="http://www.youtube.com/embed/"+startup.video+"?autohide=1&rel=0&showinfo=0&showsearch=0&wmode=transparent",frameborder="0")
+						if(startup.presentation !== "")
+							p Presentation
+							iframe(src=startup.presentation width="540" height="310" frameborder="0",marginwidth="0",marginheight="0",scrolling="no") 
+
+		.row.profile-sidebar.profile-block.last	
+			if(isOwner)
+				button.add-press-item.btn.btn-small.right Add	
+			h6 In Press
+			hr
+			if(isOwner)
+				form.press-form(action="/startups/press/"+startup.id, method="POST", novalidate="novalidate")
+						ul.profile-btns
+									li
+										a.btn.btn-small.cancel-press-item(href="#cancel") Cancel
+									li	
+										input.btn.btn-small.btn-primary(href="#save", type="submit", value="Create")	
+						input(type='hidden', name='_csrf', value="#{csrf_token}")
+						.clearfix
+						mixin fields("Title","text","title", "Enter a title", "", "shorty")
+						mixin fields("Link","text","link", "Enter url", "", "shorty")
+						
+			.startup-default-description.press-wrapper
+					ul.pressItems
+						each press in startup.press
+							li
+								span
+									if(isOwner)
+										form(action="/startups/press/del/"+startup.id, method="POST")
+											input(type='hidden', name='_csrf', value="#{csrf_token}")
+											a.delPressItem.fui-cross-inverted(href="#delete", data-id=press.id)
+									a(href=press.link, target="_BLANK")=press.title
+
+					if(startup.press.length === 0)
+						em 
+							span No stories yet. Add some to tell the story of 
+								span=startup.name				

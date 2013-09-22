@@ -1,0 +1,165 @@
+extends ../layout
+
+block content
+	include ../nav
+	include ../mixins
+
+	- var name = user.name
+	- var type = user.type
+	- var provider = user.provider
+	- var profileImage = ''
+	- var isUser = false
+	- if(provider === 'google')
+		profileImage = user.google.picture
+	- else if(provider === 'facebook')
+		profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
+	- else if(provider === 'linkedin')
+		profileImage = user.linkedin.pictureUrl
+
+	- if(user.id === req.user.id)
+		isUser = true
+
+	if(message !== undefined)
+		p message	
+	.profile-wrapper
+			.profile.container
+				.profile-content
+					if(profileImage !== "")	
+						img(src=profileImage, class="profile-img")
+					else
+						i.fui-user.profile-default-img.profile-img	
+					.profile-txt
+						span.user-type=type
+						.profile-location
+							if(user.location !== "")
+								-
+								span.location=user.location
+						h4.name-title= name
+						if(user.miniresume !== "")			
+							p.mini-resume=user.miniresume
+						else if(isUser)
+							p.mini-resume Edit your profile to add your mini resume	
+						ul.social-links
+							mixin social(user.links.website, "fui-home")
+							mixin social(user.links.blog, "fui-document")
+							mixin social(user.links.googleplus, "fui-googleplus")
+							mixin social(user.links.facebook, "fui-facebook")
+							mixin social(user.links.linkedin, "fui-linkedin")
+							mixin social(user.links.twitter, "fui-twitter")
+							mixin social(user.links.dribbble, "fui-dribbble")
+							mixin social(user.links.behance, "fui-behance")
+							//mixin social(user.links.github, "fui-github")
+					if(isUser)
+						a.btn.btn-small.btn-primary.edit-profile.btn-embossed(href="#edit", id="editPorfile") Edit
+				if(isUser)			
+					.edit-profile-wrapper.hide.container
+						form.edit-form(action='/users/edit')
+							input(type='hidden', name='_csrf', value="#{csrf_token}")
+							ul.profile-btns
+								li
+									a.btn.btn-small.btn-embossed(href="#cancel", id="cancel") Cancel
+								li	
+									input.btn.btn-small.btn-primary.btn-embossed(href="#save", type="submit", value="Save") 
+							.clearfix
+							.edit-profile-block.left
+								h6 Basics
+								hr
+								mixin fields("Full Name","text","name", "", user.name, "")
+								mixin fields("Username","text","username", "", user.username, "")
+								mixin fields("Location","text","location", "eg. Byblos", user.location, "")
+								mixin textarea("Mini-Resume", "miniresume", "span6", "3", "Tell us briefly about yourself...", user.miniresume)
+								
+							.edit-profile-block.right
+								h6 Links
+								hr
+								mixin fields("Website","text","website", "website url", user.links.website, "links")
+								mixin fields("Blog","text","blog", "personal blog url", user.links.blog, "links")
+								mixin fields("Google+","text","googleplus", "g+ url", user.links.googleplus, "links")
+								mixin fields("Linkedin","text","linkedin", "linkedin url", user.links.linkedin, "links")
+								mixin fields("Twitter","text","twitter", "twitter url", user.links.twitter, "links")
+								mixin fields("Facebook","text","facebook", "facebook url", user.links.facebook, "links")
+								mixin fields("Github","text","github", "github url", user.links.github, "links")
+								mixin fields("Dribbble","text","dribbble", "dribbble url", user.links.dribbble, "links")
+								mixin fields("Behance","text","behance", "behance url", user.links.behance, "links")
+
+	.container
+		if(user.type === "Entrepreneur")
+			.row.span7.profile-block
+				if(isUser)
+					button.add-startup.btn.btn-small.right + Add a Startup	
+				h6 Startups
+				hr
+				.startups-wrapper
+					- each startup in user.startups
+						.startup-block
+								.logo
+									a.startup-link(href="/startups/"+startup._id, title=startup.name, data-content="<p>"+startup.tagline+"</p><a href='#'>"+startup.website+"</a>")
+										i.fui-plus-inverted.startup-default-img
+								.title
+									a.title(href="#")=startup.name
+
+				if(isUser)
+					form.startup-form(action="/startups/create", method="POST")
+						ul.profile-btns
+									li
+										a.btn.btn-small.cancel-startup(href="#cancel") Cancel
+									li	
+										input.btn.btn-small.btn-primary(href="#save", type="submit", value="Create")	
+						input(type='hidden', name='_csrf', value="#{csrf_token}")
+						.clearfix
+						.control-group.small
+							label(class="control-label") Name
+							.controls
+								input.links(type="text", name="name")
+						.control-group.small
+							label(class="control-label") Tag-Line
+							.controls
+								input.links(type="text", name="tagline")	
+						.control-group.small
+							label(class="control-label") Website
+							.controls
+								input.links(type="text", name="website")			
+						.control-group
+							label(class="control-label") Description
+							textarea(name="description",placeholder="Tell us briefly about your startup...")
+		else
+			.row.span7.profile-block
+				h6 Invested In
+				hr
+				.startups-wrapper
+					a.add-startup(href="#") + Add an Investment				
+		.row.profile-sidebar.profile-block.last	
+			h6 Activity
+			hr
+			span You don't have any activity yet.
+
+	if( user.type === '')		
+		.modal.fade.hide#type
+				.modal-header
+					h3 You're one step away from joining our network!
+				form.form-horizontal.type-form(action='/users/type', method="POST")
+					input(type='hidden', name='_csrf', value="#{csrf_token}")
+					.modal-body
+						label.radio.primary
+							.icons
+								.first-icon.fui-radio-unchecked
+								.second-icon.fui-radio-checked
+							span I'm an Entrepreneur	
+							input(type="radio",name="type", value="Entrepreneur",data-toggle="radio") 
+						label.radio.primary
+							.icons
+								.first-icon.fui-radio-unchecked
+								.second-icon.fui-radio-checked
+							span  I'm an Angel Investor	
+							input(type="radio",name="type", value="Angel Investor",data-toggle="radio")
+							.loading.hide
+					.modal-footer
+						input(class="btn btn-wide btn-primary btn-embossed",type="submit",id="submitForm", value="Enter")
+			script.
+				$(document).ready(function(){
+					$('#type').modal({backdrop: 'static',keyboard: false})
+					$('#type').modal('show');
+				})
+
+
+							

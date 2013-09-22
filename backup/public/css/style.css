@@ -1,0 +1,294 @@
+html {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+@font-face {
+  font-family: 'Lato-Light';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/kcf5uOXucLcbFOydGU24WALUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/G2uphNnNqGFMHLRsO_72ngLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+/*AA Flat-UI*/
+body{
+	background-color: #323237 !important;
+}
+form{
+	margin: 0;
+}
+ul{
+	list-style: none;
+	margin: 0;
+}
+a{
+	color: #2c3e50;
+}
+.navbar .brand{
+	padding: 14px 20px;
+	color: #34495e;
+}
+.navbar-inner{
+	background: #ecf0f1;
+}
+/*Other*/
+ul.links{
+	float: right;
+	font-size: 1em;
+	padding: 18px 20px;
+	font-family: "Lato-Light", Arial, sans-serif;
+}
+ul.links li{
+	display: inline;
+	margin-right: 12px;
+}
+ul.links li a:hover{
+	text-decoration: underline;
+}
+.form-search{
+	float: left;
+	margin-top: 11px;
+	position: absolute;
+	left: 50%;
+	margin-left: -172px;
+}
+.form-search input{
+	width: 300px;
+}
+.form-search.focus.btn{
+	color:#3498db;
+}
+.sub-nav{
+	position: fixed;
+	top: 57px;
+	width: 100%;
+	background: #34495e;
+	z-index: 1030;
+}
+ul.nav-menu{
+	padding: 10px 0;
+	text-align: center;
+	margin-left: 20px;
+}
+ul.nav-menu li{
+	display: inline-block;
+	margin-right: 10px;
+	margin-right: 22px;
+}
+ul.nav-menu li a{
+	color:#EEEEEE;
+	font-family: "Lato", Arial, sans-serif;
+}
+ul.nav-menu li a:hover, ul.nav-menu li a.active{
+	color:#16a085;
+}
+#map-wrapper{
+	position: relative;
+	opacity: 0.9;
+}
+#map {
+width: 100%;
+background-color: #323237 !important;
+top: 97px;
+}
+#map div {
+top: -25px;
+}
+.big-title{
+	position: absolute;
+	text-align: center;
+	top: 230px;
+	width: 100%;
+}
+.big-title h2{
+	font-family: "Lato-Light";
+	font-weight: 300;
+	color: #ecf0f1;
+}
+.big-title h4{
+	color:#16a085;
+}
+.subscription-form .control-label{
+	font-size: 18px;
+	padding-top: 10px;
+}
+.subscription-form .modal-body{
+	padding: 20px 60px 20px;	
+}
+.subscription-form .checkbox-group{
+	margin-left: 75px;
+	margin-top: 30px;
+}
+
+.loading {
+  border-radius: 10px;
+height: 16px;
+width: 16px;
+background: #ebedee;
+position: relative;
+-webkit-animation: corner 1s ease infinite;
+-moz-animation: corner 1s ease infinite;
+-ms-animation: corner 1s ease infinite;
+-o-animation: corner 1s ease infinite;
+animation: corner 1s ease infinite;
+left: 50%;
+margin-left: -8px;
+margin-top: -8px;
+margin-bottom: -8px;
+top: -50px;
+}
+
+
+@-webkit-keyframes corner {
+
+  0% {background: #e74c3c;-webkit-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-webkit-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-webkit-transform: rotate(360deg);border-radius:10px;}
+}
+@-moz-keyframes corner {
+
+  0% {background: #e74c3c;-moz-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-moz-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-moz-transform: rotate(360deg);border-radius:10px;}
+}
+@-ms-keyframes corner {
+
+  0% {background: #e74c3c;-ms-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-ms-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-ms-transform: rotate(360deg);border-radius:10px;}
+}
+@-o-keyframes corner {
+
+  0% {background: #e74c3c;-o-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-o-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-o-transform: rotate(360deg);border-radius:10px;}
+}
+@keyframes corner {
+
+  0% {background: #e74c3c;transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;transform: rotate(360deg);border-radius:10px;}
+}
+
+@media all and (max-width: 940px){
+	.container, .navbar-inner .container{
+		width: 100%;
+	}
+
+}
+@media all and (max-width: 740px){
+	.form-search{
+		display: none;
+	}
+	.modal {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    width: auto;
+    margin: 0;
+  }
+  .modal.fade {
+    top: -100px;
+  }
+  .modal.fade.in {
+    top: 20px;
+  }
+}
+
+@media all and (max-width: 620px){
+	.big-title{
+		top: 104px;
+	}
+	.big-title h2 {
+		font-size: 2.5em;
+	}
+}
+
+@media all and (max-width: 400px){
+	.nav-menu{
+		display: none;
+	}
+	#map{
+		top:58px;
+	}
+  .modal {
+    position: absolute;
+    right: 20px;
+    left: 20px;
+    width: auto;
+    margin: 0;
+  }
+  .modal-header .close {
+    padding: 10px;
+    margin: -10px;
+  }
+  .carousel-caption {
+    position: static;
+  }
+  .modal .form-horizontal .controls {
+  	margin-left: 0px; 
+  }
+  .modal .control-label{
+  	text-align: left;
+  }
+  .subscription-form .checkbox-group{
+  	margin-left: 0;
+  }
+  .modal-header h3 {
+	font-size: 20px;
+  }
+  .form-horizontal .control-group {
+	margin-bottom: 0px;
+  }
+   .subscription-form .modal-body {
+	padding: 10px 20px 20px;
+	}
+	.modal .reset-form{
+		display: none;
+	}
+	.modal #submitForm{
+		width: 153px;
+		left: 50%;
+		position: relative;
+		margin-left: -77px;
+	}
+
+}
+
+
+
+
+
+
+
+
