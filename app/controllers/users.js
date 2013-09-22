@@ -8,6 +8,7 @@ var mongoose = require('mongoose')
   , utils = require('../../lib/utils')
 
 var login = function (req, res) {
+
   //TODO: Fix ReturnTo
   /*if (req.session.returnTo) {
     res.redirect(req.session.returnTo)
@@ -107,6 +108,10 @@ exports.create = function (req, res) {
  */
 
 exports.show = function (req, res) {
+  // Disable caching for content files
+        res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.header("Pragma", "no-cache");
+        res.header("Expires", 0);
   var user = req.profile
   res.render('users/profile', {
     title: user.name,

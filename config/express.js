@@ -22,6 +22,8 @@ function compile(str, path) {
 
   app.set('showStackError', true)
 
+  app.disable('view cache')
+  
   app.use(stylus.middleware(
     { src: config.root + '/app/views',
       dest: config.root + '/public',
@@ -39,8 +41,6 @@ function compile(str, path) {
     },
     level: 9
   }))
-
-  
 
   app.use(express.favicon())
   app.use(express.static(config.root + '/public'))
