@@ -2,12 +2,13 @@ extends ../layout
 
 block content
 	include ../nav
-
+	- var c = 0
 	.container.allStarups
 		.row
 			.span12
 				.row
 					each startup in startups
+						- c++
 						- if(startup.logo !== "" && startup.logo.versions !== undefined && startup.logo.versions !== null)
 							startupLogo = startup.logo.versions[1].url
 						- else
@@ -23,4 +24,5 @@ block content
 							p.startup.tagline=startup.tagline
 							hr
 							a(href=startup.website, target="_BLANK")=startup.website
-
+						if((c % 4) === 0)
+							.clearfix		

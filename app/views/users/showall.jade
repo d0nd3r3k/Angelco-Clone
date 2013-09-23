@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 	include ../nav
-
+	- var c = 0 
 	.container.allUsers
 		.row
 			.span12
@@ -11,6 +11,7 @@ block content
 						- var name = user.name
 						- var provider = user.provider
 						- var profileImage = ''
+						- c++
 						- if(provider === 'google')
 							profileImage = user.google.picture
 						- else if(provider === 'facebook')
@@ -49,5 +50,6 @@ block content
 									li
 										a(href=user.links.twitter, target="_BLANK")
 											i.fui-twitter
-					
+						if((c % 4) === 0)
+							.clearfix 
 				
