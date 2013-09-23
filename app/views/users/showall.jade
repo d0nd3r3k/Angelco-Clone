@@ -5,51 +5,52 @@ block content
 	- var c = 0 
 	.container.allUsers
 		.row
-			.span12
+			.span3
+			.span9
 				.row
 					each user in users
 						- var name = user.name
 						- var provider = user.provider
 						- var profileImage = ''
-						- c++
 						- if(provider === 'google')
 							profileImage = user.google.picture
 						- else if(provider === 'facebook')
 							profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
 						- else if(provider === 'linkedin')
 							profileImage = user.linkedin.pictureUrl
-						.span3.sBlock
+						.pBlock
 							.sLogo
 								a(href="/users/"+user.id, target="_BLANK")
 									if(profileImage === "")
 										i.fui-user
 									else
 										img(src=profileImage)	
-							h6
-								a(href="/users/"+user.id, target="_BLANK").title=name
-							p.startup.tagline=user.miniresume
-							hr
-							ul.social-links
-								if(user.links.website !== "")
-									li
-										a(href=user.links.website, target="_BLANK")
-											i.fui-home
-								if(user.links.googleplus !== "")
-									li
-										a(href=user.links.googleplus, target="_BLANK")
-											i.fui-googleplus
-								if(user.links.facebook !== "")	
-									li
-										a(href=user.links.facebook, target="_BLANK")
-											i.fui-facebook
-								if(user.links.linkedin !== "")
-									li
-										a(href=user.links.linkedin, target="_BLANK")
-											i.fui-linkedin
-								if(user.links.twitter !== "")
-									li
-										a(href=user.links.twitter, target="_BLANK")
-											i.fui-twitter
-						if((c % 4) === 0)
-							.clearfix 
-				
+
+							.sProfileText
+								p
+									a(href="/users/"+user.id, target="_BLANK").title=name
+								span.miniresume=user.miniresume
+								ul.social-links
+									if(user.links.website !== "")
+										li
+											a(href=user.links.website, target="_BLANK")
+												i.fui-home
+									if(user.links.googleplus !== "")
+										li
+											a(href=user.links.googleplus, target="_BLANK")
+												i.fui-googleplus
+									if(user.links.facebook !== "")	
+										li
+											a(href=user.links.facebook, target="_BLANK")
+												i.fui-facebook
+									if(user.links.linkedin !== "")
+										li
+											a(href=user.links.linkedin, target="_BLANK")
+												i.fui-linkedin
+									if(user.links.twitter !== "")
+										li
+											a(href=user.links.twitter, target="_BLANK")
+												i.fui-twitter
+							a.btn.btn-tiny.intersect-small(href="/users/"+user.id, id="intersect") connect						
+							.clearfix					
+					

@@ -488,6 +488,21 @@ ul.thumbnails {
   border-radius: 4px;
   min-height: 300px;
 }
+.pBlock {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #d6dbdf;
+  padding: 10px 10px;
+}
+.pBlock .tagline {
+  font-size: 0.9em;
+  line-height: 1.2;
+}
+.pBlock .sLogo {
+  font-size: 50px;
+  width: 60px;
+  float: left;
+}
 .sBlock {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -499,9 +514,6 @@ ul.thumbnails {
   padding: 16px 10px;
   text-align: center;
   margin-bottom: 14px;
-}
-.sBlock display inline-block {
-  vertical-align: top;
   word-wrap: break-word;
 }
 .sBlock .tagline {
@@ -522,6 +534,41 @@ ul.thumbnails {
   border-radius: 50%;
 }
 .sBlock:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.btn.btn-tiny {
+  font-size: 11.992px;
+  line-height: 20px;
+  padding: 3px 7px 5px;
+  font-weight: 400;
+  margin-right: 30px;
+  margin-top: 20px;
+}
+.intersect-small {
+  float: right;
+}
+.pBlock ul li {
+  font-size: 14px;
+  margin: 0;
+}
+.sProfileText {
+  float: left;
+  margin-left: 12px;
+  margin-top: 14px;
+}
+.pBlock p {
+  line-height: 1.1;
+  margin: 0;
+}
+.pBlock .sLogo img {
+  height: 60px;
+  width: 60px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.pBlock:hover {
   opacity: 0.7;
   cursor: pointer;
 }
