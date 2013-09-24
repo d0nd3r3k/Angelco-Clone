@@ -20,7 +20,7 @@ block content
 							profileImage = user.linkedin.pictureUrl
 						.pBlock
 							.sLogo
-								a(href="/users/"+user.id, target="_BLANK")
+								a(href="/users/"+user.id)
 									if(profileImage === "")
 										i.fui-user
 									else
@@ -28,7 +28,7 @@ block content
 
 							.sProfileText
 								p
-									a(href="/users/"+user.id, target="_BLANK").title=name
+									a(href="/users/"+user.id).title=name
 								span.miniresume=user.miniresume
 								ul.social-links
 									if(user.links.website !== "")
