@@ -555,7 +555,8 @@ ul.thumbnails {
 .sProfileText {
   float: left;
   margin-left: 12px;
-  margin-top: 14px;
+  margin-top: 8px;
+  width: 500px;
 }
 .pBlock p {
   line-height: 1.1;
