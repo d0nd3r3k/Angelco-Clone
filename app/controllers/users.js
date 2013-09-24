@@ -206,7 +206,7 @@ exports.renderAll = function(req, res){
   else{
     type = 'Angel Investor' 
   }
-  User.find({'type':type}, {}, { skip: 0, limit: 8 }, function(err, results) { 
+  User.find({'type':type}, {}, { skip: 0, limit: 24 }, function(err, results) { 
     
     res.render('users/showall', {
         title: type,
