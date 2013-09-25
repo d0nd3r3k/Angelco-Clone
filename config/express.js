@@ -70,7 +70,6 @@ function compile(str, path) {
     // express/mongo session storage
     app.use(express.session({
       secret: 'arab3angels',
-      cookie: { maxAge: new Date(Date.now() + 360000)},
       store: new mongoStore({
         url: config.db,
         collection : 'sessions'
