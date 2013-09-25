@@ -7,23 +7,24 @@ var mongoose = require('mongoose')
   , User = mongoose.model('User')
   , utils = require('../../lib/utils')
 
-var login = function (req, res) {
-
-  //TODO: Fix ReturnTo
-  /*if (req.session.returnTo) {
-    res.redirect(req.session.returnTo)
-    delete req.session.returnTo
-    return
-  }*/
-  res.redirect('/users/'+req.user.id)
-}
 
 exports.index = function (req, res){
   res.render('index', {
     title: 'Welcome to Arab Angels'
   })
 }
+
+var login = function (req, res) {
+  if (req.session.returnTo) {
+    res.redirect(req.session.returnTo)
+    delete req.session.returnTo
+    return
+  }
+  res.redirect('/')
+}
+
 exports.signin = function (req, res) {}
+
 
 /**
  * Auth callback
@@ -59,11 +60,9 @@ exports.signup = function (req, res) {
 
 exports.join = function (req, res) {
   res.render('users/join', {
-    title: 'Join',
-    user: new User()
+    title: 'Join'
   })
 }
-
 
 /**
  * Logout
@@ -108,10 +107,6 @@ exports.create = function (req, res) {
  */
 
 exports.show = function (req, res) {
-  // Disable caching for content files
-        res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-        res.header("Pragma", "no-cache");
-        res.header("Expires", 0);
   var user = req.profile
   res.render('users/profile', {
     title: user.name,
@@ -124,9 +119,7 @@ exports.show = function (req, res) {
  */
 
 exports.user = function (req, res, next, id) {
-  User
-    .findOne({ _id : id })
-    .exec(function (err, user) {
+  User.findOne({ _id : id }).exec(function (err, user) {
       if (err) return next(err)
       if (!user) return next(new Error('Failed to load User ' + id))
       req.profile = user
@@ -175,9 +168,12 @@ exports.editUser = function (req, res) {
   user.links.github = req.body.github,
   user.links.behance = req.body.behance
 
-  user.save()
-  res.writeHead(200);
-  res.end();
+  user.save(function(err){
+    if(err) next(err)
+      res.writeHead(200)
+      return res.end()
+  })
+  
 }
 
 /**
@@ -192,7 +188,8 @@ exports.listAll = function(req, res){
       else{
           type = 'Angel Investor' 
       }
-  User.find({'type':type}, {}, { skip: skip, limit: 4 }, function(err, results) { 
+      
+      User.find({'type':type}, {}, { skip: skip, limit: 4 }, function(err, results) { 
       
       res.json({responseText: results })
   })
@@ -206,7 +203,7 @@ exports.renderAll = function(req, res){
   else{
     type = 'Angel Investor' 
   }
-  User.find({'type':type}, {}, { skip: 0, limit: 24 }, function(err, results) { 
+  User.find({'type':type}, {}, { skip: 0, limit: 100 }, function(err, results) { 
     
     res.render('users/showall', {
         title: type,
