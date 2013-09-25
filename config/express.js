@@ -22,7 +22,7 @@ function compile(str, path) {
 
   app.set('showStackError', true)
 
-  app.disable('view cache')
+  //app.disable('view cache')
   
   app.use(stylus.middleware(
     { src: config.root + '/app/views',
@@ -72,6 +72,7 @@ function compile(str, path) {
     // express/mongo session storage
     app.use(express.session({
       secret: 'arab3angels',
+      cookie: { maxAge: new Date(Date.now() + 360000)},
       store: new mongoStore({
         url: config.db,
         collection : 'sessions'
@@ -93,14 +94,14 @@ function compile(str, path) {
       app.use(express.csrf())
     }
 
+    // routes should be at the last
+    app.use(app.router)
+
     // This could be moved to view-helpers :-)
     app.use(function(req, res, next){
       res.locals.csrf_token = req.csrfToken()
       next()
     })
-
-    // routes should be at the last
-    app.use(app.router)
 
     // assume "not found" in the error msgs
     // is a 404. this is somewhat silly, but
