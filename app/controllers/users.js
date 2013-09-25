@@ -20,7 +20,7 @@ var login = function (req, res) {
     delete req.session.returnTo
     return
   }
-  res.redirect('/')
+  res.redirect('/users/'+req.user.id)
 }
 
 exports.signin = function (req, res) {}
