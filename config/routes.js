@@ -50,6 +50,7 @@ module.exports = function (app, passport) {
   app.post('/startups/media/:startupId', auth.requiresLogin, startups.addMedia)
   app.post('/startups/edit/:startupId', auth.requiresLogin, startups.editStartup)
   app.post('/startups/press/:startupId', auth.requiresLogin, startups.addPress)
+  app.post('/startups/press/del/:startupId', auth.requiresLogin, startups.destroyPress)
   app.post('/startups/upload/:startupId', auth.requiresLogin, startups.uploadStartupImage)
   app.post('/startups/crop/:startupId', auth.requiresLogin, startups.cropStartupImage)
   app.get('/startups', startups.listStartups) 

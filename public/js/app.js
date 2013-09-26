@@ -412,8 +412,9 @@ var app = {
 		$('ul.pressItems').on('click','.delPressItem ', function(e){
 
 			e.preventDefault()
-			var	action = $(this).closest('form').attr('action'),
-				csrf = $(this).closest('form').find("input[name='_csrf']").val(),
+			var	form = $(this).closest('form'),
+				action = $(form).attr('action'),
+				csrf = $(form).find("input[name='_csrf']").val(),
 				data = "_csrf="+csrf+"&id="+$(this).data('id'),
 				thisBtn = $(this)
 				
