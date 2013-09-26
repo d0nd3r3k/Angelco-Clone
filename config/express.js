@@ -11,6 +11,7 @@ var express = require('express')
   , picsee = require('picsee')
   , stylus = require('stylus')
   , nib = require('nib')
+  , mongoose = require('mongoose')
 
 module.exports = function (app, config, passport) {
 
@@ -72,7 +73,8 @@ function compile(str, path) {
       secret: 'arab3angels',
       store: new mongoStore({
         url: config.db,
-        collection : 'sessions'
+        collection : 'sessions',
+        mongoose_connection: mongoose.connections[0]
       })
     }))
 
