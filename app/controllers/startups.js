@@ -13,15 +13,13 @@ var mongoose = require('mongoose')
 
 exports.create = function (req, res) {
   var startup = new Startup(req.body),
-      user = req.user  
+      user = req.user
   startup.logo = ""
   startup.user.id = user.id
+
   startup.save(function (err) {
     if (err) {
-      res.render('users/profile', {
-        message: "Startup already exist.",
-        user: user
-      })
+      return res.redirect('/users/'+user.id)
     } 
     else{
       user.startups.push({_id:startup.id, 
@@ -29,8 +27,9 @@ exports.create = function (req, res) {
                           tagline: startup.tagline,
                           website: startup.website,
                           description: startup.description})
-      user.save()
-      return res.redirect('/startups/'+startup.id)   
+      user.save(function(){
+        return res.redirect('/startups/'+startup.id)     
+      })
     }
   })
 }
@@ -85,26 +84,35 @@ exports.editStartup = function (req, res) {
   startup.links.googleplus = req.body.googleplus,
   startup.links.twitter = req.body.twitter
   
-  startup.save()
-  
-  User.update({'startups._id': startup.id}, {'$set': {
-    'startups.$.name': startup.name,
-    'startups.$.tagline': startup.tagline,
-    'startups.$.website': startup.website,
-    'startups.$.description': startup.description
-}}, function(err, response) {
-  var a = req.user.startups
-  a.forEach(function(item, i){
-    if(item._id === startup.id){
-      a.splice(i,1);
-    }
+  startup.save(function(){
+
   })
-  req.user.startups.push({_id:startup.id, 
+  
+  User
+    .update({'startups._id': startup.id}, {'$set': {
+        'startups.$.name': startup.name,
+        'startups.$.tagline': startup.tagline,
+        'startups.$.website': startup.website,
+        'startups.$.description': startup.description
+        } 
+      }, 
+    function(err, response) {
+      if(!err){
+        var a = req.user.startups
+        a.forEach(function(item, i){
+          if(item._id === startup.id){
+            a.splice(i,1)
+          }
+        })
+      
+    
+        req.user.startups.push({_id:startup.id, 
                           name: startup.name,
                           tagline: startup.tagline,
                           website: startup.website,
                           description: startup.description})
-})
+      }
+    })
  
   return res.redirect('/startups/'+startup.id)
 }
