@@ -11,44 +11,9 @@ block content
 	#map
 	.big-title
 		h2 Where startups & investors intersect
-		h4 Join us now, it's Free.
-		a(class="btn btn-inverse btn-wide btn-embossed", href="/join") Register
-
-	.modal.fade.hide#subscribe
-		.modal-header
-			button(type="button", class="close fui-cross", data-dismiss="modal", aria-hidden="true")
-			h3 Join our Angel Network Today.
-		form.form-horizontal.subscription-form(action='subscribe')
-			.modal-body
-					.control-group
-						label(class="control-label", for="inputName") Full Name:
-						.controls
-							input(type="text", id="inputName",name="name", placeholder="Pleases enter your full name")
-					.control-group
-						label(class="control-label", for="inputEmail") Email:
-						.controls
-							input(type="email", id="inputEmail",name="email", placeholder="Please enter your email")
-					.control-group
-						label(class="control-label", for="inputCountry") Country:
-						.controls
-							input(type="text", id="inputCountry",name="country", placeholder="Please enter your country")
-					.control-group.checkbox-group
-						label.checkbox.primary
-							span.icons
-								span.first-icon.fui-checkbox-unchecked
-								span.second-icon-fui-checkbox-checked
-							input(type="checkbox", value="true",name="haveInvested", data-toggle="checkbox")
-							span I have invested before
-
-						label.checkbox.primary
-							span.icons
-								span.first-icon.fui-checkbox-unchecked
-								span.second-icon-fui-checkbox-checked
-							input(type="checkbox", value="true",name="isInterested", data-toggle="checkbox")
-							span I'm interested in investing in startup companies	
-					.loading.hide		
-			.modal-footer
-				button(class="btn btn-wide reset-form", data-dismiss="modal") Cancel
-				input(class="btn btn-wide btn-primary",type="submit",id="submitForm", value="Register Now.")
-
-
+		- if (!req.isAuthenticated())
+			h4 Join us now, it's Free.
+			a(class="btn btn-inverse btn-wide btn-embossed", href="/join") Register
+		- else
+			h4 Welcome to our private network!
+			a(class="btn btn-inverse btn-wide btn-embossed", href="/users/"+req.user.id) Complete your profile	
