@@ -1,17 +1,23 @@
 mixin social(href, icon)
 		if(href !== "")
 			li
-				a(href=href, target="_BLANK")
+				a(href=href, target="_blank")
 					i(class=icon)
 
-	mixin fields(iLabel,iType, iName, iPlaceholder, iValue, iClass)
+	mixin fields(iLabel,iType, iName, iPlaceholder, iValue, iClass, required)
 		.control-group
 			label(class="control-label")=iLabel
 			.controls
-				input(type=iType, class=iClass, name=iName, placeholder=iPlaceholder, value=iValue, novalidate)
+				if(required === true)
+					input(type=iType, class=iClass, name=iName, placeholder=iPlaceholder, value=iValue, required)
+				else
+					input(type=iType, class=iClass, name=iName, placeholder=iPlaceholder, value=iValue, novalidate)	
 
-	mixin textarea(iLabel, iName, iClass, iRows, iPlaceholder, iValue)
+	mixin textarea(iLabel, iName, iClass, iRows, iPlaceholder, iValue, required)
 		.control-group
 			label(class="control-label")=iLabel
 			.controls
-				textarea(name=iName,class=iClass,rows=iRow,placeholder=iPlaceholder)=iValue
+				if(required === true)
+					textarea(name=iName,class=iClass,rows=iRow,placeholder=iPlaceholder, required)=iValue
+				else
+					textarea(name=iName,class=iClass,rows=iRow,placeholder=iPlaceholder)=iValue	

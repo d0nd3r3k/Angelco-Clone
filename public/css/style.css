@@ -230,7 +230,7 @@ ul.social-links li a i {
   width: 18px;
 }
 .profile-location {
-  text-transform: lowercase;
+  text-transform: capitalize;
   display: inline;
 }
 .edit-profile {

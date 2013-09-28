@@ -103,11 +103,11 @@ block content
 						.edit-profile-block.right
 							h6 Links
 							hr
-							mixin fields("Website","text","website", "website url", startup.website, "links")
-							mixin fields("Blog","text","blog", "personal blog url", startup.links.blog, "links")
-							mixin fields("Google+","text","googleplus", "g+ url", startup.links.googleplus, "links")
-							mixin fields("Twitter","text","twitter", "twitter url", startup.links.twitter, "links")
-							mixin fields("Facebook","text","facebook", "facebook url", startup.links.facebook, "links")
+							mixin fields("Website","URL","website", "http://", startup.website, "links")
+							mixin fields("Blog","URL","blog", "http://", startup.links.blog, "links")
+							mixin fields("Google+","URL","googleplus", "http://", startup.links.googleplus, "links")
+							mixin fields("Twitter","URL","twitter", "http://", startup.links.twitter, "links")
+							mixin fields("Facebook","URL","facebook", "http://", startup.links.facebook, "links")
 	.container										
 		.row.span7.profile-block	
 				h6 Description

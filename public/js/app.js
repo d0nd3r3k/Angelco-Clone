@@ -43,7 +43,7 @@ var app = {
 		})
 	},
 	saveProfile: function(){
-		function createLink(url,icon) {
+		createLink = function(url,icon) {
 			var socialLinks = $(".social-links"),
 				linkDom = socialLinks.find("."+icon)
 
@@ -79,43 +79,50 @@ var app = {
 				github = user[11]['value'],
 				dribbble = user[12]['value'],
 				behance = user[13]['value']
-				
-			$.ajax(action,{
-				type:'POST',
-				contentType: 'application/x-www-form-urlencoded',
-				dataType:'html',
-				data: data,
-				timeout: 15000,
-				beforeSend: function(){
-					$('.profile-txt').fadeTo(500,0.6)
-					var socialLinks = $(".social-links")
-					$(".profile-txt h4").html(name)
-					$(".profile-txt .mini-resume").html(miniresume)
-					$(".profile-location").html('<span> - '+location+'</span>')
-					 createLink(website,'fui-home')
-					 createLink(blog,'fui-document')
-					 createLink(googleplus,'fui-googleplus')
-					 createLink(linkedin,'fui-linkedin')
-					 createLink(facebook,'fui-facebook')
-					 createLink(twitter,'fui-twitter')
-					 createLink(dribbble,'fui-dribbble')
-					 createLink(behance,'fui-behance')
-					 $('.edit-profile-wrapper').fadeToggle("fast", function(){
-						$('.profile-content').fadeToggle()
-					})
-				},
-				success: function(response){
-					$('.profile-txt').fadeTo(500,1)
-				},
-				error: function(request, errorType, errorMessage){
-					//Handle Error
+			$(form).validate({
 
-				},
-				complete: function(){
-					
+			  	submitHandler: function(form) {
+			    	submitForm()
+			  	}
+			 })
+			submitForm = function(){	
+				$.ajax(action,{
+					type:'POST',
+					contentType: 'application/x-www-form-urlencoded',
+					dataType:'html',
+					data: data,
+					timeout: 15000,
+					beforeSend: function(){
+						$('.profile-txt').fadeTo(500,0.6)
+						var socialLinks = $(".social-links")
+						$(".profile-txt h4").html(name)
+						$(".profile-txt .mini-resume").html(miniresume)
+						$(".profile-location").html('<span> - '+location+'</span>')
+						 createLink(website,'fui-home')
+						 createLink(blog,'fui-document')
+						 createLink(googleplus,'fui-googleplus')
+						 createLink(linkedin,'fui-linkedin')
+						 createLink(facebook,'fui-facebook')
+						 createLink(twitter,'fui-twitter')
+						 createLink(dribbble,'fui-dribbble')
+						 createLink(behance,'fui-behance')
+						 $('.edit-profile-wrapper').fadeToggle("fast", function(){
+							$('.profile-content').fadeToggle()
+						})
+					},
+					success: function(response){
+						$('.profile-txt').fadeTo(500,1)
+					},
+					error: function(request, errorType, errorMessage){
+						//Handle Error
 
-				}
-			})
+					},
+					complete: function(){
+						
+
+					}
+				})
+			}
 		})
 	},
 	cancelChanges: function(){
@@ -417,7 +424,7 @@ var app = {
 				csrf = $(form).find("input[name='_csrf']").val(),
 				data = "_csrf="+csrf+"&id="+$(this).data('id'),
 				thisBtn = $(this)
-				
+
 			$.ajax(action,{
 					type:'POST',
 					contentType: 'application/x-www-form-urlencoded',

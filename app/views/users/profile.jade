@@ -33,7 +33,7 @@ block content
 						.profile-location
 							if(user.location !== "")
 								-
-								span.location=user.location
+								span.location=" "+user.location
 						h4.name-title= name
 						if(user.miniresume !== "")			
 							p.mini-resume=user.miniresume
@@ -64,23 +64,23 @@ block content
 							.edit-profile-block.left
 								h6 Basics
 								hr
-								mixin fields("Full Name","text","name", "", user.name, "")
-								mixin fields("Username","text","username", "", user.username, "")
-								mixin fields("Location","text","location", "eg. Byblos", user.location, "")
-								mixin textarea("Mini-Resume", "miniresume", "span6", "3", "Tell us briefly about yourself...", user.miniresume)
+								mixin fields("Full Name","text","name", "", user.name, "", true)
+								mixin fields("Username","text","username", "", user.username, "", true)
+								mixin fields("Location","text","location", "eg. Byblos", user.location, "", true)
+								mixin textarea("Mini-Resume", "miniresume", "span6", "3", "Tell us briefly about yourself...", user.miniresume, true)
 								
 							.edit-profile-block.right
 								h6 Links
 								hr
-								mixin fields("Website","text","website", "website url", user.links.website, "links")
-								mixin fields("Blog","text","blog", "personal blog url", user.links.blog, "links")
-								mixin fields("Google+","text","googleplus", "g+ url", user.links.googleplus, "links")
-								mixin fields("Linkedin","text","linkedin", "linkedin url", user.links.linkedin, "links")
-								mixin fields("Twitter","text","twitter", "twitter url", user.links.twitter, "links")
-								mixin fields("Facebook","text","facebook", "facebook url", user.links.facebook, "links")
-								mixin fields("Github","text","github", "github url", user.links.github, "links")
-								mixin fields("Dribbble","text","dribbble", "dribbble url", user.links.dribbble, "links")
-								mixin fields("Behance","text","behance", "behance url", user.links.behance, "links")
+								mixin fields("Website","URL","website", "http://", user.links.website, "links", flase)
+								mixin fields("Blog","URL","blog", "http://", user.links.blog, "links", false)
+								mixin fields("Google+","URL","googleplus", "http://", user.links.googleplus, "links", false)
+								mixin fields("Linkedin","URL","linkedin", "http://", user.links.linkedin, "links", false)
+								mixin fields("Twitter","URL","twitter", "http://", user.links.twitter, "links", false)
+								mixin fields("Facebook","URL","facebook", "http://", user.links.facebook, "links", false)
+								mixin fields("Github","URL","github", "http://", user.links.github, "links", false)
+								mixin fields("Dribbble","URL","dribbble", "http://", user.links.dribbble, "links", false)
+								mixin fields("Behance","URL","behance", "http://", user.links.behance, "links", false)
 
 	.container
 		if(user.type === "Entrepreneur")
@@ -114,14 +114,14 @@ block content
 						.control-group.small
 							label(class="control-label") Tag-Line
 							.controls
-								input.links(type="text", name="tagline")	
+								input.links(type="text", name="tagline", placeholder="Describe your startup in a single line.")	
 						.control-group.small
 							label(class="control-label") Website
 							.controls
-								input.links(type="text", name="website")			
+								input.links(type="URL", name="website",placeholder="http://")			
 						.control-group
 							label(class="control-label") Description
-							textarea(name="description",placeholder="Tell us briefly about your startup...")
+							textarea(name="description",placeholder="Tell us briefly about your startup.")
 		else
 			.row.span7.profile-block
 				h6 Invested In
