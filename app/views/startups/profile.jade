@@ -95,10 +95,10 @@ block content
 						.edit-profile-block.left
 							h6 Basics
 							hr
-							mixin fields("Startup Name","text","name", "", startup.name, "")
-							mixin fields("Tagline","text","tagline", "", startup.tagline, "")
-							mixin fields("Location","text","location", "eg. Byblos", startup.location, "")
-							mixin textarea("Description", "description", "span6", "3", "Tell us briefly about your startup...", startup.description)
+							mixin fields("Startup Name","text","name", "", startup.name, "", true)
+							mixin fields("Tagline","text","tagline", "", startup.tagline, "", true)
+							mixin fields("Location","text","location", "eg. Byblos", startup.location, "", true)
+							mixin textarea("Description", "description", "span6", "3", "Tell us briefly about your startup...", startup.description, true)
 							
 						.edit-profile-block.right
 							h6 Links
@@ -118,7 +118,9 @@ block content
 							span What are you building? Start at the basics. Assume the reader doesn't know anything about what you do. 
 							a.add-description(href="#edit") Add a description
 				else
-					p.description-txt=startup.description			
+					- startup.description = startup.description.replace(/\n/g, '<br />')		
+					p.description-txt!=startup.description	
+
 		
 		.row.profile-sidebar.profile-block.last
 			h6 Founders
