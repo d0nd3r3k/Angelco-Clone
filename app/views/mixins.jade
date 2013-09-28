@@ -13,11 +13,11 @@ mixin social(href, icon)
 				else
 					input(type=iType, class=iClass, name=iName, placeholder=iPlaceholder, value=iValue, novalidate)	
 
-	mixin textarea(iLabel, iName, iClass, iRows, iPlaceholder, iValue, required)
+	mixin textarea(iLabel, iName, iClass, iRows, iPlaceholder, iValue, required, maxlength)
 		.control-group
 			label(class="control-label")=iLabel
 			.controls
 				if(required === true)
-					textarea(name=iName,class=iClass,rows=iRow,placeholder=iPlaceholder, required)=iValue
+					textarea(name=iName,class=iClass,rows="4",placeholder=iPlaceholder, required, maxlength=maxlength)=iValue
 				else
-					textarea(name=iName,class=iClass,rows=iRow,placeholder=iPlaceholder)=iValue	
+					textarea(name=iName,class=iClass,rows="4",placeholder=iPlaceholder, maxlength=maxlength)=iValue	
