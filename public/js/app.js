@@ -584,7 +584,7 @@ var app = {
 	              								startupImage+
 	              								'</a>'+
               								'</div>'+
-              								'<div class=".sText">'+
+              								'<div class="sText">'+
               								'<h6 class="title">'+item.name+'</h6>'+	
               								'<p class="startup tagline">'+item.tagline+'</p>'+
               								'</div>' + 
