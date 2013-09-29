@@ -516,27 +516,27 @@ ul.thumbnails {
   word-wrap: break-word;
 }
 .sText {
-  min-height: 100px;
+  min-height: 115px;
 }
 .sLinks {
   position: relative;
-  top: 72px;
+  top: 15px;
   width: 220px;
   right: 10px;
   height: 53px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  background: #34495e;
+  background: #7f8c8d;
 }
 .sLinks hr {
   margin: 15px 0;
 }
 .sLinks ul.social-links li a {
-  color: #ecf0f1;
+  color: #fefefe;
 }
 .sLinks ul.social-links li a:hover {
-  color: #16a085;
+  color: #2c3e50;
 }
 .sBlock .tagline {
   font-size: 0.9em;
