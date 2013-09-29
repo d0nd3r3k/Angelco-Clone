@@ -372,12 +372,12 @@ var app = {
 				e.preventDefault()
 				var form = $(this),
 					action = form.attr('action'),
-					data = form.serialize(),
+					data = $(form).serialize(),
 					pressItem = form.serializeArray(),
 					title = pressItem[1]['value'],
 					link = pressItem[2]['value'],
 					input = $(form).find('.controls input'),
-					csrf = $("input[name='_csrf']").val()	
+					csrf = $(form).find("input[name='_csrf']").val()	
 
 				if(title !== "" && link !== ""){
 					$(".press-wrapper em").hide()
