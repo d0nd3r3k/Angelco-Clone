@@ -1,5 +1,6 @@
 var app = {
 	init: function(){
+
 		this.validation()
 		this.editProfile()
 		this.saveProfile()
@@ -18,6 +19,7 @@ var app = {
 		this.uploadStartupImage()
 		this.showStartups()
 		this.showAllUsers()
+
 		//$('li.sBlock').wookmark()
 	},
 	validateEmail: function(emailAddress) {
@@ -59,70 +61,69 @@ var app = {
 			 	linkDom.parent().parent().remove()
 			 }
 		}
-
+		$(".edit-form").validate()
 		$(".edit-form").on('submit', function(e){
-			e.preventDefault()
-			var form = $(this),
-				action = form.attr('action'),
-				data = form.serialize(),
-				user = form.serializeArray(),
-				name = user[1]['value'],
-				username = user[2]['value'],
-				location = user[3]['value'],
-				miniresume = user[4]['value'],
-				website = user[5]['value'],
-				blog = user[6]['value'],
-				googleplus = user[7]['value'],
-				linkedin = user[8]['value'],
-				twitter = user[9]['value'],
-				facebook = user[10]['value'],
-				github = user[11]['value'],
-				dribbble = user[12]['value'],
-				behance = user[13]['value']
-			$(form).validate({
+			var	form = $(this),
+				isvalidate=$(form).valid()
 
-			  	submitHandler: function(form) {
-			    	submitForm()
-			  	}
-			 })
-			submitForm = function(){	
-				$.ajax(action,{
-					type:'POST',
-					contentType: 'application/x-www-form-urlencoded',
-					dataType:'html',
-					data: data,
-					timeout: 15000,
-					beforeSend: function(){
-						$('.profile-txt').fadeTo(500,0.6)
-						var socialLinks = $(".social-links")
-						$(".profile-txt h4").html(name)
-						$(".profile-txt .mini-resume").html(miniresume)
-						$(".profile-location").html('<span> - '+location+'</span>')
-						 createLink(website,'fui-home')
-						 createLink(blog,'fui-document')
-						 createLink(googleplus,'fui-googleplus')
-						 createLink(linkedin,'fui-linkedin')
-						 createLink(facebook,'fui-facebook')
-						 createLink(twitter,'fui-twitter')
-						 createLink(dribbble,'fui-dribbble')
-						 createLink(behance,'fui-behance')
-						 $('.edit-profile-wrapper').fadeToggle("fast", function(){
-							$('.profile-content').fadeToggle()
-						})
-					},
-					success: function(response){
-						$('.profile-txt').fadeTo(500,1)
-					},
-					error: function(request, errorType, errorMessage){
-						//Handle Error
+	        if(isvalidate){
+		        e.preventDefault();
+				var action = form.attr('action'),
+					data = form.serialize(),
+					user = form.serializeArray(),
+					name = user[1]['value'],
+					username = user[2]['value'],
+					location = user[3]['value'],
+					miniresume = user[4]['value'],
+					website = user[5]['value'],
+					blog = user[6]['value'],
+					googleplus = user[7]['value'],
+					linkedin = user[8]['value'],
+					twitter = user[9]['value'],
+					facebook = user[10]['value'],
+					github = user[11]['value'],
+					dribbble = user[12]['value'],
+					behance = user[13]['value']
+				
+				
+					$.ajax(action,{
+						type:'POST',
+						contentType: 'application/x-www-form-urlencoded',
+						dataType:'html',
+						data: data,
+						timeout: 15000,
+						beforeSend: function(){
+							$('.profile-txt').fadeTo(500,0.6)
+							var socialLinks = $(".social-links")
+							$(".profile-txt h4").html(name)
+							$(".profile-txt .mini-resume").html(miniresume)
+							$(".profile-location").html('<span> - '+location+'</span>')
+							 createLink(website,'fui-home')
+							 createLink(blog,'fui-document')
+							 createLink(googleplus,'fui-googleplus')
+							 createLink(linkedin,'fui-linkedin')
+							 createLink(facebook,'fui-facebook')
+							 createLink(twitter,'fui-twitter')
+							 createLink(github,'fui-github')
+							 createLink(dribbble,'fui-dribbble')
+							 createLink(behance,'fui-behance')
+							 $('.edit-profile-wrapper').fadeToggle("fast", function(){
+								$('.profile-content').fadeToggle()
+							})
+						},
+						success: function(response){
+							$('.profile-txt').fadeTo(500,1)
+						},
+						error: function(request, errorType, errorMessage){
+							//Handle Error
 
-					},
-					complete: function(){
-						
+						},
+						complete: function(){
+							
 
-					}
-				})
-			}
+						}
+					})
+				}
 		})
 	},
 	cancelChanges: function(){
@@ -348,70 +349,71 @@ var app = {
 		})
 	},
 	savePressItem: function(){
-		$(".press-form").on('submit', function(e){	
 
-			e.preventDefault()
-			var form = $(this),
-				action = form.attr('action'),
-				data = form.serialize(),
-				pressItem = form.serializeArray(),
-				title = pressItem[1]['value'],
-				link = pressItem[2]['value'],
-				input = $(form).find('.controls input'),
-				csrf = $("input[name='_csrf']").val()	
-
-			if(title !== "" && link !== ""){
-				$(".press-wrapper em").hide()
-				$.ajax(action,{
-					type:'POST',
-					contentType: 'application/x-www-form-urlencoded',
-					dataType:'html',
-					data: data,
-					timeout: 15000,
-					beforeSend: function(){
-
-					},
-					success: function(response){
-						
-						
-					},
-					error: function(request, errorType, errorMessage){
-						//Handle Error
-
-					},
-					complete: function(response){
-						var rData = JSON.parse(response.responseText)
-						var pressElement = "<li><span>" +
-								"<form action='/startups/press/del/"+rData.action+"'>" +
-									"<input name='_csrf' type='hidden' value='"+csrf+"'/>"+
-									"<a href='#delete' data-id="+rData.id+" class='delPressItem fui-cross-inverted'></a>"+
-								"</form>"+
-								"<a href='"+link+"' target='_BLANK'>"+title+"</a>"+
-							"</span></li>"
-
-						$("ul.pressItems").append(pressElement)
-							
-					}
-			})
-			$(this).find('.cancel-press-item').trigger('click')		
-			}
-			else {
-				$(form).validate(
-				  {
-				    rules: {
+		$(".press-form").validate({
+			rules: {
 				      title: {
 				        minlength: 2,
 				        required: true
 				      },
 				      link: {
 				      	minlength: 2,
-				      	required: true
+				      	required: true,
+				      	url: true
 				      }
 				     }
-				   })  
-			}
-			
+		})
+		$(".press-form").on('submit', function(e){
+			var	form = $(this),
+				isvalidate=$(form).valid()
 
+	        if(isvalidate){
+				e.preventDefault()
+				var form = $(this),
+					action = form.attr('action'),
+					data = form.serialize(),
+					pressItem = form.serializeArray(),
+					title = pressItem[1]['value'],
+					link = pressItem[2]['value'],
+					input = $(form).find('.controls input'),
+					csrf = $("input[name='_csrf']").val()	
+
+				if(title !== "" && link !== ""){
+					$(".press-wrapper em").hide()
+					$.ajax(action,{
+						type:'POST',
+						contentType: 'application/x-www-form-urlencoded',
+						dataType:'html',
+						data: data,
+						timeout: 15000,
+						beforeSend: function(){
+
+						},
+						success: function(response){
+							
+							
+						},
+						error: function(request, errorType, errorMessage){
+							//Handle Error
+
+						},
+						complete: function(response){
+							var rData = JSON.parse(response.responseText)
+							var pressElement = "<li><span>" +
+									"<form action='/startups/press/del/"+rData.action+"'>" +
+										"<input name='_csrf' type='hidden' value='"+csrf+"'/>"+
+										"<a href='#delete' data-id="+rData.id+" class='delPressItem fui-cross-inverted'></a>"+
+									"</form>"+
+									"<a href='"+link+"' target='_BLANK'>"+title+"</a>"+
+								"</span></li>"
+
+							$("ul.pressItems").append(pressElement)
+								
+						}
+				})
+				$(this).find('.cancel-press-item').trigger('click')		
+				}
+			}
 		})
 	},
 	delPressItem: function(){
@@ -655,6 +657,7 @@ var app = {
 
 $(function() {
 	app.init()
+	
 })
 
 

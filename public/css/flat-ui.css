@@ -100,6 +100,7 @@ you can use the generic selector below, but it's slower:
 .fui-path,
 .fui-myspace,
 .fui-linkedin,
+.fui-github,
 .fui-googleplus,
 .fui-dribbble,
 .fui-blogger,
@@ -370,6 +371,9 @@ you can use the generic selector below, but it's slower:
 }
 .fui-list-bulleted:before {
   content: "\e053";
+}
+.fui-github:before {
+  content: "\e054";
 }
 /* 62px */
 /* 52px */
