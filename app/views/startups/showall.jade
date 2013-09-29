@@ -22,7 +22,24 @@ block content
 										img(src=startupLogo)	
 							h6.title=startup.name
 							p.startup.tagline=startup.tagline
-							hr
-							a(href=startup.website, target="_BLANK")=startup.website
+							.sLinks
+								hr
+								ul.social-links
+										if(startup.website !== "")
+											li
+												a(href=startup.website, target="_blank")
+													i.fui-home
+										if(startup.links.googleplus !== "")
+											li
+												a(href=startup.links.googleplus, target="_blank")
+													i.fui-googleplus
+										if(startup.links.facebook !== "")	
+											li
+												a(href=startup.links.facebook, target="_blank")
+													i.fui-facebook
+										if(startup.links.twitter !== "")
+											li
+												a(href=startup.links.twitter, target="_blank")
+
 						if((c % 4) === 0)
 							.clearfix		

@@ -508,13 +508,33 @@ ul.thumbnails {
   -moz-border-radius: 4px;
   border-radius: 4px;
   width: 200px;
-  min-height: 263px;
+  min-height: 240px;
   background-color: #edeff1;
   border-top: 2px solid #d6dbdf;
   padding: 16px 10px;
   text-align: center;
   margin-bottom: 14px;
   word-wrap: break-word;
+}
+.sLinks {
+  position: relative;
+  top: 49px;
+  width: 220px;
+  right: 10px;
+  height: 53px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background: #34495e;
+}
+.sLinks hr {
+  margin: 15px 0;
+}
+.sLinks ul.social-links li a {
+  color: #ecf0f1;
+}
+.sLinks ul.social-links li a:hover {
+  color: #16a085;
 }
 .sBlock .tagline {
   font-size: 0.9em;
@@ -533,8 +553,11 @@ ul.thumbnails {
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
-.sBlock:hover {
-  opacity: 0.7;
+.allStarups .span12 .row:hover > .sBlock {
+  opacity: 0.5;
+}
+.allStarups .span12 .row > .sBlock:hover {
+  opacity: 1;
   cursor: pointer;
 }
 .btn.btn-tiny {

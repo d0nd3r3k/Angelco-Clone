@@ -1,6 +1,7 @@
 aa-blue = #34495e
 //aa-gray = #ecf0f1
 aa-gray = #FEFEFE
+aa-dark-gray = #ecf0f1
 aa-light-blue = #3498db
 aa-dark-blue = #2c3e50
 aa-dark-green = #16a085
@@ -504,13 +505,30 @@ ul.thumbnails
 .sBlock
 	border-radius(4px)
 	width 200px
-	min-height 263px
+	min-height 240px
 	background-color #edeff1
 	border-top 2px solid #d6dbdf
 	padding 16px 10px
 	text-align center
 	margin-bottom 14px
 	word-wrap break-word
+.sLinks
+	position relative
+	top 49px
+	width 220px
+	right 10px
+	height 53px
+	border-radius(4px)
+	background aa-blue
+
+.sLinks hr
+	margin 15px 0
+
+.sLinks ul.social-links li a
+	color aa-dark-gray
+
+.sLinks ul.social-links li a:hover
+	color aa-dark-green
 
 .sBlock .tagline
 	font-size 0.9em
@@ -526,9 +544,11 @@ ul.thumbnails
 	height 80px
 	width 80px
 	border-radius(50%)
+.allStarups .span12 .row:hover > .sBlock
+	opacity 0.5
 
-.sBlock:hover
-	opacity 0.7
+.allStarups .span12 .row > .sBlock:hover
+	opacity 1
 	cursor pointer
 
 .btn.btn-tiny 

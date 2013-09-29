@@ -19,6 +19,7 @@ var app = {
 		this.uploadStartupImage()
 		this.showStartups()
 		this.showAllUsers()
+		this.clickStartup()
 
 		//$('li.sBlock').wookmark()
 	},
@@ -591,6 +592,12 @@ var app = {
 	    		}
 			})
 		}	
+	},
+	clickStartup: function(){
+		$(".sBlock").on('click', function(){
+			var url = $(this).find(".sLogo a").attr('href')
+			window.location.replace(url)
+		})
 	},
 	showAllUsers: function(){
 		if($(".allUsers").length !== 0){
