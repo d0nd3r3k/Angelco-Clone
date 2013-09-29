@@ -567,16 +567,30 @@ var app = {
 								var startupImage = "<i class='fui-plus-inverted'></i>"
 								if(item.logo !== "" && item.logo.versions !== undefined && item.logo.versions !== null)
             						startupImage = "<img src='"+item.logo.versions[1].url+"' />"
-            				
+            					
+            					var links = "<ul class='social-links'>"
+								if(item.website !== "")
+									links += '<li><a href="'+item.website+'" target="_BLANK"><i class="fui-home"></i></a></li>'
+								if(item.links.googleplus !== "")
+									links += '<li><a href="'+item.links.googleplus+'" target="_BLANK"><i class="fui-googleplus"></i></a></li>'
+								if(item.links.facebook !== "")	
+									links += '<li><a href="'+item.links.facebook+'" target="_BLANK"><i class="fui-facebook"></i></a></li>'
+								if(item.links.twitter !== "")
+									links += '<li><a href="'+item.links.twitter+'" target="_BLANK"><i class="fui-twitter"></i></a></li>'
+
 								var sBlock = '<div class="span3 sBlock"> '+
               								'<div class="sLogo">'+
 	              								'<a href="/startups/'+item._id+'" target="_BLANK">'+
 	              								startupImage+
 	              								'</a>'+
               								'</div>'+
-              								'<h6 class="title">'+item.name+'</h6>'+
+              								'<div class=".sText">'+
+              								'<h6 class="title">'+item.name+'</h6>'+	
               								'<p class="startup tagline">'+item.tagline+'</p>'+
-              								'<hr><a href="'+item.website+'" target="_BLANK">'+item.website+'</a>'+
+              								'</div>' + 
+              								'<div class="sLinks">'+             								
+              								'<hr>'+links+
+              								'</div>'+
             								'</div>'
             					
 								
