@@ -88,6 +88,14 @@ block content
 				if(isUser)
 					button.add-startup.btn.btn-small.right + Add a Startup	
 				h6 Startups
+				if( user.startups.length !== 0)
+					em
+						span=user.name 
+						span is the Co-Founder of:
+				else
+					em
+						span=user.name  
+						span  haven't added any startups yet.		
 				hr
 				.startups-wrapper
 					- each startup in user.startups
