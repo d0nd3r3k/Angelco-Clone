@@ -138,8 +138,11 @@ block content
 					a.add-startup(href="#") + Add an Investment				
 		.row.profile-sidebar.profile-block.last	
 			h6 Activity
+			em
+				span Stalk  
+				span= user.name
 			hr
-			span No activities yet...
+			span no activities yet.
 
 	if( user.type === '')		
 		.modal.fade.hide#type
