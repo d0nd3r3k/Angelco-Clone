@@ -508,7 +508,6 @@ ul.thumbnails {
   -moz-border-radius: 4px;
   border-radius: 4px;
   width: 200px;
-  min-height: 240px;
   background-color: #edeff1;
   border-top: 2px solid #d6dbdf;
   padding: 16px 10px;
@@ -516,9 +515,12 @@ ul.thumbnails {
   margin-bottom: 14px;
   word-wrap: break-word;
 }
+.sText {
+  min-height: 100px;
+}
 .sLinks {
   position: relative;
-  top: 49px;
+  top: 72px;
   width: 220px;
   right: 10px;
   height: 53px;
