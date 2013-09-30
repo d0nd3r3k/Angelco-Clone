@@ -2,6 +2,8 @@ extends ../layout
 
 block content
 	include ../nav
+	include ../mixins
+	
 	- var c = 0
 	.container.allStarups
 		.row
@@ -26,21 +28,10 @@ block content
 							.sLinks
 								hr
 								ul.social-links
-										if(startup.website !== "")
-											li
-												a(href=startup.website, target="_blank")
-													i.fui-home
-										if(startup.links.googleplus !== "")
-											li
-												a(href=startup.links.googleplus, target="_blank")
-													i.fui-googleplus
-										if(startup.links.facebook !== "")	
-											li
-												a(href=startup.links.facebook, target="_blank")
-													i.fui-facebook
-										if(startup.links.twitter !== "")
-											li
-												a(href=startup.links.twitter, target="_blank")
+									mixin social(startup.website, "fui-home")
+									mixin social(startup.links.googleplus, "fui-googleplus")
+									mixin social(startup.links.facebook, "fui-facebook")
+									mixin social(startup.links.twitter, "fui-twitter")
 
 						if((c % 4) === 0)
 							.clearfix		
