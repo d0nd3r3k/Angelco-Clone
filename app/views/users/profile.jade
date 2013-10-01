@@ -27,35 +27,35 @@ block content
 	if(message !== undefined)
 		p message	
 	.profile-wrapper
-		if(isUser)
-			span.loading.hide
-			.uploadImage.hide
-				form(action="/users/upload/"+user.id,method="post",id="upload",enctype="multipart/form-data")
-					input(type='hidden', name='_csrf', value="#{csrf_token}")
-					input(type="file", name="profPhoto", class="hide", id='inputFile')
-					.form-actions
-						a(href="#",id="triggerFile", class="btn btn-primary btn-embossed btn-huge btn-danger") Upload Image
-						input(type="submit", name="upload", class="btn btn-embossed btn-huge btn-danger hide", value="Upload Photo")
-
-			.cropImage.hide
-				form(action="/users/crop/"+user.id,method="post",id="crop")
-					input(type='hidden', name='_csrf', value="#{csrf_token}")
-					fieldset
-						legend click on the image below and drag
-						ul.thumbnails
-							li.span4
-								.thumbnail
-									img(class="pre-processed")
-						input(type="hidden",name="coordx1",id="coordx1")
-						input(type="hidden",name="coordy1",id="coordy1")
-						input(type="hidden",name="coordx2",id="coordx2")
-						input(type="hidden",name="coordy2",id="coordy2")
-						input(type="hidden",name="w",id="w")
-						input(type="hidden",name="h",id="h")
-						input(type="hidden",name="image")
-						input(type="hidden",name="original")
+			if(isUser)
+				span.loading.hide
+				.uploadImage.hide
+					form(action="/users/upload/"+user.id,method="post",id="upload",enctype="multipart/form-data")
+						input(type='hidden', name='_csrf', value="#{csrf_token}")
+						input(type="file", name="profPhoto", class="hide", id='inputFile')
 						.form-actions
-								input(type="submit", name="crop", class="btn btn-embossed btn-huge btn-danger", value="Crop & Save")
+							a(href="#",id="triggerFile", class="btn btn-primary btn-embossed btn-huge btn-danger") Upload Image
+							input(type="submit", name="upload", class="btn btn-embossed btn-huge btn-danger hide", value="Upload Photo")
+
+				.cropImage.hide
+					form(action="/users/crop/"+user.id,method="post",id="crop")
+						input(type='hidden', name='_csrf', value="#{csrf_token}")
+						fieldset
+							legend click on the image below and drag
+							ul.thumbnails
+								li.span4
+									.thumbnail
+										img(class="pre-processed")
+							input(type="hidden",name="coordx1",id="coordx1")
+							input(type="hidden",name="coordy1",id="coordy1")
+							input(type="hidden",name="coordx2",id="coordx2")
+							input(type="hidden",name="coordy2",id="coordy2")
+							input(type="hidden",name="w",id="w")
+							input(type="hidden",name="h",id="h")
+							input(type="hidden",name="image")
+							input(type="hidden",name="original")
+							.form-actions
+									input(type="submit", name="crop", class="btn btn-embossed btn-huge btn-danger", value="Crop & Save")
 			.profile.container
 				.profile-content
 					if(profileImage !== "")	
