@@ -8,11 +8,10 @@ block content
 	- var type = user.type
 	- var provider = user.provider
 	- var isUser = false
-	- if(user.photo !== "" && user.photo.versions !== undefined && user.photo.versions !== null)
+	- if(user.photo !== undefined)
 		profileImage = user.photo.versions[1].url
 	- else
 		profileImage = ''
-
 	- if(provider === 'google')
 		profileImage = user.google.picture
 	- else if(provider === 'facebook')
