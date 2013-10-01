@@ -11,13 +11,17 @@ block content
 					each user in users
 						- var name = user.name
 						- var provider = user.provider
-						- var profileImage = ''
-						- if(provider === 'google')
-							profileImage = user.google.picture
-						- else if(provider === 'facebook')
-							profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
-						- else if(provider === 'linkedin')
-							profileImage = user.linkedin.pictureUrl
+						- if(user.photo !== undefined )
+							if(user.photo !== '')
+								profileImage = user.photo.versions[1].url
+						- else
+							profileImage = ''
+							if(provider === 'google')
+								profileImage = user.google.picture
+							else if(provider === 'facebook')
+								profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
+							else if(provider === 'linkedin')
+								profileImage = user.linkedin.pictureUrl
 						.pBlock
 							.sLogo
 								a(href="/users/"+user.id)
