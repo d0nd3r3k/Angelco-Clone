@@ -8,16 +8,17 @@ block content
 	- var type = user.type
 	- var provider = user.provider
 	- var isUser = false
-	- if(user.photo !== undefined)
-		profileImage = user.photo.versions[1].url
+	- if(user.photo !== undefined )
+		if(user.photo !== '')
+			profileImage = user.photo.versions[1].url
 	- else
 		profileImage = ''
-	- if(provider === 'google')
-		profileImage = user.google.picture
-	- else if(provider === 'facebook')
-		profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
-	- else if(provider === 'linkedin')
-		profileImage = user.linkedin.pictureUrl
+		if(provider === 'google')
+			profileImage = user.google.picture
+		else if(provider === 'facebook')
+			profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
+		else if(provider === 'linkedin')
+			profileImage = user.linkedin.pictureUrl
 
 
 	- if(user.id === req.user.id)
