@@ -231,9 +231,9 @@ exports.uploadUserImage = function(req, res, next){
       var patt1 = /\.([0-9a-z]+)(?:[\?#]|$)/i
       var isSecure = (req.files.profPhoto.name).match(patt1)
       if(isSecure[1] === "png" || isSecure[1] === "jpg" || isSecure[1] === "jpeg" || isSecure[1] === "gif"){
-        user.save(function(err){
-          res.json({responseText: results})  
-        })
+        
+        res.json({responseText: results})  
+        
       }
       else{
         res.json({responseText: 232})  

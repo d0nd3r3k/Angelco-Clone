@@ -179,8 +179,7 @@ exports.uploadStartupImage = function(req, res, next){
       var patt1 = /\.([0-9a-z]+)(?:[\?#]|$)/i
       var isSecure = (req.files.profPhoto.name).match(patt1)
       if(isSecure[1] === "png" || isSecure[1] === "jpg" || isSecure[1] === "jpeg" || isSecure[1] === "gif"){
-        startup.save()
-
+      
         res.json({responseText: results})  
       }
       else{
