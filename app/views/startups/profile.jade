@@ -8,17 +8,17 @@ block content
 	- var type = founder.type
 	- var isOwner = false
 	- var provider = founder.provider
-	- if(user.photo !== undefined )
-		if(user.photo !== '')
-			profileImage = user.photo.versions[1].url
+	- if(founder.photo !== undefined )
+		if(founder.photo !== '')
+			profileImage = founder.photo.versions[1].url
 	- else
 		profileImage = ''
 		if(provider === 'google')
-			profileImage = user.google.picture
+			profileImage = founder.google.picture
 		else if(provider === 'facebook')
-			profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
+			profileImage = 'https://graph.facebook.com/'+founder.facebook.username+'/picture?type=large'
 		else if(provider === 'linkedin')
-			profileImage = user.linkedin.pictureUrl
+			profileImage = founder.linkedin.pictureUrl
 	- if(startup.logo !== "" && startup.logo.versions !== undefined && startup.logo.versions !== null)
 		startupLogo = startup.logo.versions[1].url
 	- else
