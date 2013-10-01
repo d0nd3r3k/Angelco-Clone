@@ -8,6 +8,7 @@ var mongoose = require('mongoose')
   , Startup = mongoose.model('Startup')
   , utils = require('../../lib/utils')
   , async = require('async')
+  , picsee = require('picsee')
 
 
 exports.index = function (req, res){
@@ -111,7 +112,6 @@ exports.create = function (req, res) {
 exports.show = function (req, res) {
   var user = req.profile,
       startups = []
-  
   async.eachSeries(user.startups,function(startup, callback){
     Startup.findOne({ _id : startup._id }).exec(function (err, startup) {
       startups.push(startup)
@@ -221,3 +221,39 @@ exports.renderAll = function(req, res){
       })    
   })
 }
+
+exports.uploadUserImage = function(req, res, next){
+  var user = req.user
+
+  picsee.upload(req, res, function (err, results) {
+      
+      user.photo = results
+      var patt1 = /\.([0-9a-z]+)(?:[\?#]|$)/i
+      var isSecure = (req.files.profPhoto.name).match(patt1)
+      if(isSecure[1] === "png" || isSecure[1] === "jpg" || isSecure[1] === "jpeg" || isSecure[1] === "gif"){
+        user.save(function(err){
+          res.json({responseText: results})  
+        })
+      }
+      else{
+        res.json({responseText: 232})  
+      }
+      
+      
+    })
+}
+exports.cropUserImage = function(req, res, next){
+  var user = req.user
+  var original = req.body.original || false
+  picsee.crop(req, res, function (err, results) {
+    if (err) res.send(err)
+    var photos = {
+      versions: results,
+      original: picsee.getOriginal(original)
+    }
+    user.photo = photos
+    user.save()
+    res.json({responseText: photos})
+  })
+}
+

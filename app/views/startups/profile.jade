@@ -8,7 +8,10 @@ block content
 	- var type = founder.type
 	- var isOwner = false
 	- var provider = founder.provider
-	- var profileImage = ''
+	- if(user.photo !== "" && user.photo.versions !== undefined && user.photo.versions !== null)
+		profileImage = user.photo.versions[1].url
+	- else
+		profileImage = ''
 	- if(provider === 'google')
 		profileImage = founder.google.picture
 	- else if(provider === 'facebook')

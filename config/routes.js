@@ -39,6 +39,8 @@ module.exports = function (app, passport) {
   app.get('/auth/google',passport.authenticate('google', {failureRedirect: '/login',scope: ['https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email']}), users.signin)
   app.get('/auth/google/callback',passport.authenticate('google', {failureRedirect: '/login'}), users.authCallback)
   app.get('/users/all/:type', users.renderAll)
+  app.post('/users/upload/:userId', auth.requiresLogin, users.uploadUserImage)
+  app.post('/users/crop/:userId', auth.requiresLogin, users.cropUserImage)
   //app.get('/users/all/:type/:skip', users.listAll)
 
   app.param('userId', users.user)
