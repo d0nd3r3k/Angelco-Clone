@@ -16,6 +16,7 @@ block content
 	- else if(provider === 'linkedin')
 		profileImage = user.linkedin.pictureUrl
 
+
 	- if(user.id === req.user.id)
 		isUser = true
 
@@ -98,11 +99,19 @@ block content
 						span  haven't added any startups yet.		
 				hr
 				.startups-wrapper
-					- each startup in user.startups
+					- each startup in startups
+						- if(startup.logo !== "" && startup.logo.versions !== undefined && startup.logo.versions !== null)
+							startupLogo = startup.logo.versions[1].url
+						- else
+							startupLogo = ""
+
 						.startup-block
 								.logo
 									a.startup-link(href="/startups/"+startup._id, title=startup.name, data-content="<p>"+startup.tagline+"</p><a href='#'>"+startup.website+"</a>")
-										i.fui-plus-inverted.startup-default-img
+										if(startupLogo === "")
+											i.fui-plus-inverted.startup-default-img
+										else
+											img.startup-default-img(src=startupLogo)	
 								.title
 									a.title(href="#")=startup.name
 

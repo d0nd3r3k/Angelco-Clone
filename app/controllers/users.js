@@ -5,7 +5,9 @@
 
 var mongoose = require('mongoose')
   , User = mongoose.model('User')
+  , Startup = mongoose.model('Startup')
   , utils = require('../../lib/utils')
+  , async = require('async')
 
 
 exports.index = function (req, res){
@@ -107,10 +109,20 @@ exports.create = function (req, res) {
  */
 
 exports.show = function (req, res) {
-  var user = req.profile
-  res.render('users/profile', {
-    title: user.name,
-    user: user
+  var user = req.profile,
+      startups = []
+  
+  async.eachSeries(user.startups,function(startup, callback){
+    Startup.findOne({ _id : startup._id }).exec(function (err, startup) {
+      startups.push(startup)
+      callback(null, startup)
+    })
+  }, function(err){
+      res.render('users/profile', {
+        title: user.name,
+        user: user,
+        startups: startups
+    })
   })
 }
 
@@ -151,21 +163,19 @@ exports.setType = function (req, res) {
 
 exports.editUser = function (req, res) {
   
-  var user = req.user;
-
-  
-  user.name = req.body.name,
-  user.username = req.body.username,
-  user.location = req.body.location,
-  user.miniresume = req.body.miniresume,
-  user.links.website = req.body.website,
-  user.links.blog = req.body.blog,
-  user.links.facebook = req.body.facebook,
-  user.links.googleplus = req.body.googleplus,
-  user.links.twitter = req.body.twitter,
-  user.links.linkedin = req.body.linkedin,
-  user.links.dribbble = req.body.dribbble,
-  user.links.github = req.body.github,
+  var user = req.user
+  user.name = req.body.name
+  user.username = req.body.username
+  user.location = req.body.location
+  user.miniresume = req.body.miniresume
+  user.links.website = req.body.website
+  user.links.blog = req.body.blog
+  user.links.facebook = req.body.facebook
+  user.links.googleplus = req.body.googleplus
+  user.links.twitter = req.body.twitter
+  user.links.linkedin = req.body.linkedin
+  user.links.dribbble = req.body.dribbble
+  user.links.github = req.body.github
   user.links.behance = req.body.behance
 
   user.save(function(err){
@@ -211,5 +221,3 @@ exports.renderAll = function(req, res){
       })    
   })
 }
-
-
