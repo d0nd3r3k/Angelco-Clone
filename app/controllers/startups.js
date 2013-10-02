@@ -19,6 +19,7 @@ exports.create = function (req, res) {
 
   startup.save(function (err) {
     if (err) {
+      res.statusCode = 307
       return res.redirect('/users/'+user.id)
     } 
     else{
@@ -28,6 +29,7 @@ exports.create = function (req, res) {
                           website: startup.website,
                           description: startup.description})
       user.save(function(){
+        res.statusCode = 307
         return res.redirect('/startups/'+startup.id)     
       })
     }
@@ -56,6 +58,7 @@ exports.show = function (req, res) {
   var startup = req.strtProfile
   
   User.findOne({ _id : startup.user.id }).exec(function (err, founder) {
+    res.statusCode = 307
     res.render('startups/profile', {
         title: startup.name,
         startup: startup,
@@ -73,48 +76,19 @@ exports.show = function (req, res) {
 exports.editStartup = function (req, res) {
   
   var startup = req.strtProfile
-  user = req.user,
-  startup.name = req.body.name,
-  startup.location = req.body.location,
-  startup.tagline = req.body.tagline,
-  startup.description = req.body.description,
-  startup.website = req.body.website,
-  startup.links.blog = req.body.blog,
-  startup.links.facebook = req.body.facebook,
-  startup.links.googleplus = req.body.googleplus,
+  startup.name = req.body.name
+  startup.location = req.body.location
+  startup.tagline = req.body.tagline
+  startup.description = req.body.description
+  startup.website = req.body.website
+  startup.links.blog = req.body.blog
+  startup.links.facebook = req.body.facebook
+  startup.links.googleplus = req.body.googleplus
   startup.links.twitter = req.body.twitter
   
-  startup.save(function(){
-
-  })
-  
-  User
-    .update({'startups._id': startup.id}, {'$set': {
-        'startups.$.name': startup.name,
-        'startups.$.tagline': startup.tagline,
-        'startups.$.website': startup.website,
-        'startups.$.description': startup.description
-        } 
-      }, 
-    function(err, response) {
-      if(!err){
-        var a = req.user.startups
-        a.forEach(function(item, i){
-          if(item._id === startup.id){
-            a.splice(i,1)
-          }
-        })
-      
-    
-        req.user.startups.push({_id:startup.id, 
-                          name: startup.name,
-                          tagline: startup.tagline,
-                          website: startup.website,
-                          description: startup.description})
-      }
-    })
- 
-  return res.redirect('/startups/'+startup.id)
+  startup.save()
+  res.statusCode = 307
+  return res.redirect('/startups/'+startup.id)  
 }
 exports.addMedia = function (req, res) {
 

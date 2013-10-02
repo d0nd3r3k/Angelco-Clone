@@ -23,7 +23,7 @@ var login = function (req, res) {
     delete req.session.returnTo
     return
   }
-  res.statusCode = 307;
+  res.statusCode = 307
   res.redirect('/users/'+req.user.id)
 }
 
@@ -121,7 +121,7 @@ exports.show = function (req, res) {
       callback(null, startup)
     })
   }, function(err){
-      res.statusCode = 307;
+      res.statusCode = 307
       res.render('users/profile', {
         title: user.name,
         user: user,
@@ -138,6 +138,7 @@ exports.user = function (req, res, next, id) {
   User.findOne({ _id : id }).exec(function (err, user) {
       if (err) return next(err)
       if (!user) return next(new Error('Failed to load User ' + id))
+      res.statusCode = 307
       req.profile = user
       next()
     })
