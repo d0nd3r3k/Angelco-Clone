@@ -23,6 +23,7 @@ var login = function (req, res) {
     delete req.session.returnTo
     return
   }
+  res.statusCode = 307;
   res.redirect('/users/'+req.user.id)
 }
 
@@ -73,6 +74,7 @@ exports.join = function (req, res) {
 
 exports.logout = function (req, res) {
   req.logout()
+  res.statusCode = 307;
   res.redirect('/login')
 }
 
@@ -101,6 +103,7 @@ exports.create = function (req, res) {
     // manually login the user once successfully signed up
     req.logIn(user, function(err) {
       if (err) return next(err)
+      res.statusCode = 307;
       return res.redirect('/users/'+req.user.id)
     })
   })
@@ -118,6 +121,7 @@ exports.show = function (req, res) {
       callback(null, startup)
     })
   }, function(err){
+      res.statusCode = 307;
       res.render('users/profile', {
         title: user.name,
         user: user,
@@ -151,6 +155,7 @@ exports.setType = function (req, res) {
   
   user.type = req.body.type
   user.save(function(){
+    res.statusCode = 307;
     return res.redirect('/users/'+req.user.id)
   })  
 
