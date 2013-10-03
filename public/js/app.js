@@ -684,8 +684,7 @@ $(function() {
 	    valueKey: 'name',
 	    prefetch: '/search/all',
 	    template: '<div class="search-results"><span>{{type}}</span><p>{{name}}</p></div>',
-	    engine: Hogan,
-	    ttl_ms: 1
+	    engine: Hogan
 	  }
 	])
 	
