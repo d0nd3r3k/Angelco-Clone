@@ -270,6 +270,7 @@ exports.search = function(req, res){
       
       User.find({}, 'name type', {}, function(err, results) { 
       
+      res.statusCode = 307
       res.json(results)
   })
 }

@@ -9,52 +9,53 @@ block content
 			.span9
 				.row
 					each user in users
-						- var name = user.name
-						- var provider = user.provider
-						- if(user.photo !== undefined )
-							if(user.photo !== '')
-								profileImage = user.photo.versions[1].url
-						- else
-							profileImage = ''
-							if(provider === 'google')
-								profileImage = user.google.picture
-							else if(provider === 'facebook')
-								profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
-							else if(provider === 'linkedin')
-								profileImage = user.linkedin.pictureUrl
-						.pBlock
-							.sLogo
-								a(href="/users/"+user.id)
-									if(profileImage === "")
-										i.fui-user
-									else
-										img(src=profileImage)	
+						if(user.miniresume !== "" )
+							- var name = user.name
+							- var provider = user.provider
+							- if(user.photo !== undefined )
+								if(user.photo !== '')
+									profileImage = user.photo.versions[1].url
+							- else
+								profileImage = ''
+								if(provider === 'google')
+									profileImage = user.google.picture
+								else if(provider === 'facebook')
+									profileImage = 'https://graph.facebook.com/'+user.facebook.username+'/picture?type=large'
+								else if(provider === 'linkedin')
+									profileImage = user.linkedin.pictureUrl
+							.pBlock
+								.sLogo
+									a(href="/users/"+user.id)
+										if(profileImage === "")
+											i.fui-user
+										else
+											img(src=profileImage)	
 
-							.sProfileText
-								p
-									a(href="/users/"+user.id).title=name
-								span.miniresume=user.miniresume
-								ul.social-links
-									if(user.links.website !== "")
-										li
-											a(href=user.links.website, target="_blank")
-												i.fui-home
-									if(user.links.googleplus !== "")
-										li
-											a(href=user.links.googleplus, target="_blank")
-												i.fui-googleplus
-									if(user.links.facebook !== "")	
-										li
-											a(href=user.links.facebook, target="_blank")
-												i.fui-facebook
-									if(user.links.linkedin !== "")
-										li
-											a(href=user.links.linkedin, target="_blank")
-												i.fui-linkedin
-									if(user.links.twitter !== "")
-										li
-											a(href=user.links.twitter, target="_blank")
-												i.fui-twitter
-							a.btn.btn-tiny.intersect-small(href="/users/"+user.id, id="intersect") connect						
-							.clearfix					
+								.sProfileText
+									p
+										a(href="/users/"+user.id).title=name
+									span.miniresume=user.miniresume
+									ul.social-links
+										if(user.links.website !== "")
+											li
+												a(href=user.links.website, target="_blank")
+													i.fui-home
+										if(user.links.googleplus !== "")
+											li
+												a(href=user.links.googleplus, target="_blank")
+													i.fui-googleplus
+										if(user.links.facebook !== "")	
+											li
+												a(href=user.links.facebook, target="_blank")
+													i.fui-facebook
+										if(user.links.linkedin !== "")
+											li
+												a(href=user.links.linkedin, target="_blank")
+													i.fui-linkedin
+										if(user.links.twitter !== "")
+											li
+												a(href=user.links.twitter, target="_blank")
+													i.fui-twitter
+								a.btn.btn-tiny.intersect-small(href="/users/"+user.id, id="intersect") connect						
+								.clearfix
 					
