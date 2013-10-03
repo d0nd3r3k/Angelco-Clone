@@ -277,12 +277,21 @@ exports.search = function(req, res){
 /**
  * Search All Users
  */
-exports.searchResults = function(req, res){
+exports.searchResults = function(req, res, next){
       
       var name = req.body.name
 
-      User.find({"name":name}, 'id', {limit: 1}, function(err, user) {  
-      res.statusCode = 307
-      res.redirect('/users/'+user[0]._id)
+      User.find({"name":name}, 'id', {limit: 1}, function(err, user) {
+        
+        if (err) return next(err)
+      
+        if (0 === user.length) return next(err)
+
+        else {
+          res.statusCode = 307
+          res.redirect('/users/'+user[0]._id)
+        }
+
+          
   })
 }
