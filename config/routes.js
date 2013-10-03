@@ -57,10 +57,13 @@ module.exports = function (app, passport) {
   app.post('/startups/crop/:startupId', auth.requiresLogin, startups.cropStartupImage)
   app.get('/startups', startups.listStartups) 
 
+
   //app.put('/startups/:id', auth.requiresLogin, startups.update)
   //app.del('/startups/:id', auth.requiresLogin, startups.destroy)
   app.param('startupId', startups.startup)
   // home route
+  app.get('/search/all', users.search)
+  app.post('/find', users.searchResults)
   app.get('/', users.index)
 
 }

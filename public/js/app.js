@@ -678,6 +678,15 @@ var app = {
 
 $(function() {
 	app.init()
+	$('.form-search .typehead').typeahead([
+	  {
+	    name: 'Search',
+	    valueKey: 'name',
+	    prefetch: '/search/all',
+	    template: '<div class="search-results"><span>{{type}}</span><p>{{name}}</p></div>',
+	    engine: Hogan
+	  }
+	])
 	
 })
 

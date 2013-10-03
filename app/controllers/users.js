@@ -263,3 +263,26 @@ exports.cropUserImage = function(req, res, next){
   })
 }
 
+/**
+ * Search All Users
+ */
+exports.search = function(req, res){
+      
+      User.find({}, 'name type', {}, function(err, results) { 
+      
+      res.json(results)
+  })
+}
+
+/**
+ * Search All Users
+ */
+exports.searchResults = function(req, res){
+      
+      var name = req.body.name
+
+      User.find({"name":name}, 'id', {limit: 1}, function(err, user) {  
+      res.statusCode = 307
+      res.redirect('/users/'+user[0]._id)
+  })
+}

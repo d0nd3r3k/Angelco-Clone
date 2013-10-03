@@ -3,11 +3,12 @@
 		.container
 			a.brand(href='/') Arab
 				span Angels
-			form.form-search
+			form.form-search(action='/find', method='POST')
+				input(type='hidden', name='_csrf', value="#{csrf_token}")
 				.input-prepend
 					button(type="submit", class="btn btn-small")
-						span.fui-search
-					input(type="text", class=" small search-query", placeholder="Search")
+						i.fui-search
+					input(type="text", name='name',class="typehead small search-query", placeholder="Search")
 			
 			- var name
 			- if (!req.isAuthenticated())
