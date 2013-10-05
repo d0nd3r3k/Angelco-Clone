@@ -189,7 +189,7 @@ block content
 					.investments
 						- each inv in user.investments
 							.inv-item + Invested in 
-								if(inv._id === 0)
+								if(inv._id === '0')
 									span=inv.name
 								else
 									a(href='/startups/'+inv._id)=inv.name
