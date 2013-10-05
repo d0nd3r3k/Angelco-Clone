@@ -755,7 +755,7 @@ var app = {
 							else
 								link = "<a href='/startups/"+startupId+"'>"+name+"</a>"
 
-							var invItem = "<div class='inv-item'>+ Invested in "+link+" for $"+amount+"<p>"+comments+"</p></div>"
+							var invItem = "<div class='inv-item'>+ Invested in "+link+" for $ "+amount+"<p>"+comments+"</p></div>"
 							$(".investments").append(invItem)
 						},
 						error: function(request, errorType, errorMessage){
