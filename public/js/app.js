@@ -739,12 +739,12 @@ var app = {
 						data: data,
 						timeout: 15000,
 						beforeSend: function(){
-
+							$(".cancel-startup").trigger('click')
 						},
 						success: function(response){
 							response = JSON.parse(response)
 							var startupId = response.responseText
-							$(".cancel-startup").trigger('click')
+							
 							form.find("input[name='startupName']").val("")
 							form.find("input[name='amount']").val("")
 							form.find("textarea[name='comments']").val("")
