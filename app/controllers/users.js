@@ -282,7 +282,7 @@ exports.searchResults = function(req, res, next){
       
       var name = req.body.name
 
-      User.find({"name":name}, 'id', {limit: 1}, function(err, user) {
+      User.find({ "name" : { $regex : new RegExp(name, "i") } }, 'id', {limit: 1}, function(err, user) {
         
         if (err) return next(err)
       
@@ -291,8 +291,41 @@ exports.searchResults = function(req, res, next){
         else {
           res.statusCode = 307
           res.redirect('/users/'+user[0]._id)
-        }
-
-          
+        } 
   })
 }
+
+/**
+ * Add Investment
+ */
+
+exports.addInvestment = function(req, res){
+      var user = req.user ,
+          startupName = req.body.startupName
+                              
+      Startup.find({ "name" : { $regex : new RegExp(startupName, "i") } }, 'id name', {limit: 1}, function(err, startup) {
+        if (err) return next(err)
+      
+        if (0 === startup.length){
+          user.investments.push({_id:'0', 
+                          name: startupName,
+                          amount: req.body.amount,
+                          comments: req.body.comments})
+          user.save()
+          res.statusCode = 200
+          res.json({responseText: '0'})
+        }  
+
+        else {
+          user.investments.push({_id:startup[0].id, 
+                          name: startup[0].name,
+                          amount: req.body.amount,
+                          comments: req.body.comments})
+          user.save()
+          res.statusCode = 200
+          res.json({responseText: startup[0].id})
+        } 
+  })
+
+}
+

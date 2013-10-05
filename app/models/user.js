@@ -40,7 +40,8 @@ var UserSchema = new Schema({
   linkedin: {},
   google: {},
   type: { type: String, default: '' },
-  startups: {type: []}
+  startups: {type: []},
+  investments: {type: []}
 })
 
 /**

@@ -20,8 +20,23 @@ var app = {
 		this.showStartups()
 		this.showAllUsers()
 		this.clickStartup()
-
-		//$('li.sBlock').wookmark()
+		this.addInvestment()
+		this.searchUsers()
+		
+	},
+	searchUsers: function(){
+		$('.form-search .typehead').typeahead([
+		  {
+		    name: 'Search',
+		    valueKey: 'name',
+		    prefetch:{
+		    	url:'/search/all',
+		    	ttl:60000
+		    },
+		    template: '<div class="search-results"><span>{{type}}</span><p>{{name}}</p></div>',
+		    engine: Hogan
+		  }
+		])
 	},
 	validateEmail: function(emailAddress) {
 	    var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i)
@@ -673,24 +688,91 @@ var app = {
 	    		}
 			})
 		}	
+	},
+	addInvestment: function(){
+		$('.add-investment .typehead').typeahead([
+			  {
+			    name: 'Search Startup',
+			    valueKey: 'name',
+			    prefetch:{
+			    	url:'/search/startups',
+			    	ttl:1000
+			    },
+			    template: '<div class="search-results"><p>{{name}}</p></div>',
+			    engine: Hogan
+			  }
+			])
+
+		$(".add-investment").validate({
+			rules: {
+				      startupName: {
+				        minlength: 2,
+				        required: true
+				      },
+				      amount: {
+				      	minlength: 2,
+				      	required: true,
+				      	digits: true
+				      }
+				    }
+		})
+		$(".add-investment").on('submit', function(e){
+			var	form = $(this),
+				isvalidate=$(form).valid()
+
+	        if(isvalidate){
+				e.preventDefault()
+				var form = $(this),
+					action = form.attr('action'),
+					data = $(form).serialize(),
+					startupItem = form.serializeArray(),
+					name = startupItem[1]['value'],
+					amount = startupItem[2]['value'],
+					comments = startupItem[3]['value'],
+					input = $(form).find('.controls input'),
+					csrf = $(form).find("input[name='_csrf']").val()	
+
+					$.ajax(action,{
+						type:'POST',
+						contentType: 'application/x-www-form-urlencoded',
+						dataType:'html',
+						data: data,
+						timeout: 15000,
+						beforeSend: function(){
+
+						},
+						success: function(response){
+							response = JSON.parse(response)
+							var startupId = response.responseText
+							$(".cancel-startup").trigger('click')
+							form.find("input[name='startupName']").val("")
+							form.find("input[name='amount']").val("")
+							form.find("textarea[name='comments']").val("")
+							var link = ""
+							
+							if(startupId === '0')
+								link = "<span>"+name+"</span>"
+							else
+								link = "<a href='/startups/"+startupId+"'>"+name+"</a>"
+
+							var invItem = "<div class='inv-item'>+ Invested in "+link+" for $"+amount+"<p>"+comments+"</p></div>"
+							$(".investments").append(invItem)
+						},
+						error: function(request, errorType, errorMessage){
+							//Handle Error
+
+						},
+						complete: function(response){
+								
+						}
+				})
+			}
+		})
 	}
 }
 
 $(function() {
 	app.init()
-	$('.form-search .typehead').typeahead([
-	  {
-	    name: 'Search',
-	    valueKey: 'name',
-	    prefetch:{
-	    	url:'/search/all',
-	    	ttl:60000
-	    },
-	    template: '<div class="search-results"><span>{{type}}</span><p>{{name}}</p></div>',
-	    engine: Hogan
-	  }
-	])
-	
 })
 
 

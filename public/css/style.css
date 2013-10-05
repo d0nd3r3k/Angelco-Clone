@@ -209,6 +209,7 @@ input[type=email] {
   margin: 0;
   line-height: 1em;
   display: block;
+  margin-bottom: 6px;
 }
 .profile p {
   margin: 0 0 2px;
@@ -753,19 +754,26 @@ img.jcrop-preview {
   min-height: 290px;
 }
 /*Search Typehead styling*/
-.input-prepend span.tt-dropdown-menu {
+.input-prepend span.tt-dropdown-menu,
+span.tt-dropdown-menu {
   background: #fff;
   padding: 10px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
   width: 260px;
   opacity: 0.9;
+  border-bottom: 2px solid #16a085;
+  border-left: 2px solid #16a085;
+  border-right: 2px solid #16a085;
 }
 .form-search .input-prepend .search-query {
   font-size: 15px;
 }
-input.tt-hint {
+.form-search input.tt-hint {
   text-indent: 3px;
   margin-top: -4px;
 }
@@ -781,4 +789,20 @@ input.tt-hint {
   padding: 0;
   font-size: 14px;
   line-height: 1.2;
+}
+.investments {
+  text-align: left;
+}
+.investments p {
+  font-size: 0.9em;
+}
+.investments a {
+  text-decoration: underline;
+}
+.inv-item {
+  margin-bottom: 10px;
+}
+.mini-resume span {
+  color: #7f8c8d;
+  font-size: 14px;
 }

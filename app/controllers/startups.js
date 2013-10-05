@@ -168,7 +168,6 @@ exports.cropStartupImage = function(req, res, next){
   var original = req.body.original || false
   picsee.crop(req, res, function (err, results) {
     if (err) res.send(err)
-    console.log(results)    
     var photos = {
       versions: results,
       original: picsee.getOriginal(original)
@@ -198,6 +197,18 @@ exports.renderStartups = function(req, res){
         title: 'Startups',
         startups: results
       })    
+  })
+}
+
+/**
+ * Search All Startups
+ */
+exports.search = function(req, res){
+      
+      Startup.find({}, 'name', {}, function(err, results) { 
+      
+      res.statusCode = 200
+      res.json(results)
   })
 }
 

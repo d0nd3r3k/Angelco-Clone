@@ -41,6 +41,7 @@ module.exports = function (app, passport) {
   app.get('/users/all/:type', users.renderAll)
   app.post('/users/upload/:userId', auth.requiresLogin, users.uploadUserImage)
   app.post('/users/crop/:userId', auth.requiresLogin, users.cropUserImage)
+  app.post('/angels/investments/add', auth.requiresLogin, users.addInvestment)
   //app.get('/users/all/:type/:skip', users.listAll)
 
   app.param('userId', users.user)
@@ -63,6 +64,7 @@ module.exports = function (app, passport) {
   app.param('startupId', startups.startup)
   // home route
   app.get('/search/all', users.search)
+  app.get('/search/startups', startups.search)
   app.post('/find', users.searchResults)
   app.get('/', users.index)
 

@@ -176,12 +176,54 @@ block content
 						.control-group
 							label(class="control-label") Description
 							textarea(name="description",placeholder="Tell us briefly about your startup.")
-		else
+		else if(user.type === 'Angel Investor')
 			.row.span7.profile-block
-				h6 Invested In
+				if(isUser)
+					button.add-startup.btn.btn-small.right + Add an Investment
+				h6 Investments
+				em
+					span=user.name 
+					span  invested in the following startups:
 				hr
 				.startups-wrapper
-					a.add-startup(href="#") + Add an Investment				
+					.investments
+						- each inv in user.investments
+							.inv-item + Invested in 
+								if(inv.id === 0)
+									span=inv.name
+								else
+									a(href='/startups/'+inv._id)=inv.name
+								span  for $ 
+								span=inv.amount
+								p=inv.comments
+				if(isUser)
+					form.startup-form.add-investment(action="/angels/investments/add", method="POST")
+						ul.profile-btns
+									li
+										a.btn.btn-small.cancel-startup(href="#cancel") Cancel
+									li	
+										input.btn.btn-small.btn-primary(href="#save", type="submit", value="Add")	
+						input(type='hidden', name='_csrf', value="#{csrf_token}")
+						.clearfix
+						.control-group.small
+							label(class="control-label") Startup Name
+							.controls
+								input.links(type="text",class="typehead",name="startupName")
+						.control-group.small
+							label(class="control-label") Amount Invested in $ 
+								em (Will only show to other angels)
+							.controls
+								input.links(type="text", name="amount", id="amount", placeholder="")	
+						.control-group
+							label(class="control-label") Comments 
+								em (Will only show to other angels)
+							textarea(name="comments",placeholder="Share you experience")
+
+
+
+
+
+
 		.row.profile-sidebar.profile-block.last	
 			h6 Activity
 			em
