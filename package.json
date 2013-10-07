@@ -36,6 +36,7 @@
     "jsdom":"latest",
     "picsee":"latest",
     "stylus":"latest",
-    "nib": "latest"
+    "nib": "latest",
+    "nodemailer":"latest"
   }
 }

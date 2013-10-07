@@ -9,8 +9,7 @@ var mongoose = require('mongoose')
   , utils = require('../../lib/utils')
   , jsdom = require('jsdom')
   , picsee = require('picsee')
-
-
+  
 exports.create = function (req, res) {
   var startup = new Startup(req.body),
       user = req.user

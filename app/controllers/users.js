@@ -9,12 +9,13 @@ var mongoose = require('mongoose')
   , utils = require('../../lib/utils')
   , async = require('async')
   , picsee = require('picsee')
-
+  , mailer = require('../mailer/config') 
 
 exports.index = function (req, res){
   res.render('index', {
     title: 'Welcome to Arab Angels'
   })
+
 }
 
 var login = function (req, res) {
@@ -128,6 +129,7 @@ exports.show = function (req, res) {
         startups: startups
     })
   })
+
 }
 
 /**
@@ -156,7 +158,8 @@ exports.setType = function (req, res) {
   
   user.type = req.body.type
   user.save(function(){
-    res.statusCode = 307;
+    mailer.send('welcome', user)
+    res.statusCode = 307
     return res.redirect('/users/'+req.user.id)
   })  
 
