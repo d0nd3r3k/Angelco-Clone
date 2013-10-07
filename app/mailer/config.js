@@ -8,12 +8,12 @@ smtpTrans = nodemailer.createTransport('SMTP', {
           pass: "zer0mstr" 
       }
   })
-exports.send = function(template, user){
+exports.send = function(template, user, subject, sendTo){
   jade.renderFile(__dirname+'/templates/'+template+'.jade',{user:user}, function(err, mail){
     mailOpts = {
         from: 'Arab Angels <Donald@arabangels.org>',
-        to: user.email,
-        subject: 'Welcome to Arab Angels',
+        to: sendTo,
+        subject: subject,
         html: mail
     }
 
@@ -30,4 +30,5 @@ exports.send = function(template, user){
 
   })
 }  
+
 

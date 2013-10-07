@@ -22,7 +22,57 @@ var app = {
 		this.clickStartup()
 		this.addInvestment()
 		this.searchUsers()
+		this.isInterested()
 		
+	},
+	isInterested: function(){
+
+		$(".interested").on('click', function(e){
+			var intButton = this
+			e.preventDefault()
+			$('#sendMail').modal({backdrop: 'static',keyboard: false})
+			$('#sendMail').modal('show')
+			
+			$(".interested-form").validate({
+				rules: { mailMessage: { minlength: 2, required: true } }
+			})
+
+			$(".interested-form").on('submit', function(e){
+				var	form = $(this),
+					isvalidate=$(form).valid()
+
+	        	if(isvalidate){
+					e.preventDefault()
+					var form = $(this),
+						action = form.attr('action'),
+						data = $(form).serialize(),
+						csrf = $(form).find("input[name='_csrf']").val()	
+
+					$.ajax(action,{
+						type:'POST',
+						contentType: 'application/x-www-form-urlencoded',
+						dataType:'html',
+						data: data,
+						timeout: 15000,
+						beforeSend: function(){
+
+						},
+						success: function(response){
+							
+						},
+						error: function(request, errorType, errorMessage){
+							//Handle Error
+
+						},
+						complete: function(response){
+							$(intButton).find("i").removeClass().addClass("fui-check-inverted")
+							$(intButton).removeClass("btn-inverse").addClass("btn-primary")
+							$("#sendMail").modal('hide')	
+						}
+					})
+				}
+			})
+		})
 	},
 	searchUsers: function(){
 		$('.form-search .typehead').typeahead([

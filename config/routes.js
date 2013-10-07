@@ -42,6 +42,7 @@ module.exports = function (app, passport) {
   app.post('/users/upload/:userId', auth.requiresLogin, users.uploadUserImage)
   app.post('/users/crop/:userId', auth.requiresLogin, users.cropUserImage)
   app.post('/angels/investments/add', auth.requiresLogin, users.addInvestment)
+  app.post('/angels/interested', auth.requiresLogin, users.isInterested)
   //app.get('/users/all/:type/:skip', users.listAll)
 
   app.param('userId', users.user)

@@ -1,0 +1,20 @@
+img(src='http://www.arabangels.org/images/header.jpg')
+
+.email-container
+	br
+	span Dear 
+	span=user.founderName
+	span ,
+	br
+	p
+		a(href='http://www.arabangels.org/users/'+user.id) An Angel Investor
+		span  is interested in your startup.
+		span  He also sent you the following message:
+		h3
+			em=user.message 
+	p Please contact him via the following email: 
+		a(href='mailto:'+user.email)=user.email
+	span --
+	p.footer 
+		em Arab Angels Team	
+

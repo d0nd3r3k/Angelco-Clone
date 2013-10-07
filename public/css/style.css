@@ -806,3 +806,14 @@ span.tt-dropdown-menu {
   color: #7f8c8d;
   font-size: 14px;
 }
+.interested {
+  font-weight: 300;
+  padding-left: 15px;
+  float: right;
+}
+.interested i {
+  width: 15px;
+}
+i.fui-mail span {
+  margin-left: 6px;
+}

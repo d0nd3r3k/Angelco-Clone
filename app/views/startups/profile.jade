@@ -87,6 +87,9 @@ block content
 
 				if(isOwner)
 					a.btn.btn-small.btn-primary.edit-profile.btn-embossed(href="#edit", id="editPorfile") Edit
+				if(user.type === "Angel Investor")	
+					a.btn.interested.btn-inverse(href="#interested", id="isInterested") interested
+						i.fui-question
 			if(isOwner)			
 				.edit-profile-wrapper.hide.container
 					form.edit-startup-form(action='/startups/edit/'+startup.id, method="POST")
@@ -204,4 +207,27 @@ block content
 					if(startup.press.length === 0)
 						em 
 							span No stories yet. Add some to tell the story of 
-								span=startup.name				
+								span=startup.name
+	if( user.type === 'Angel Investor')		
+		.modal.hide.fade#sendMail
+				.modal-header
+					h3 Connect with 
+						span=name
+						span !
+				form.form-horizontal.interested-form(action='/angels/interested', method="POST")
+					input(type='hidden', name='_csrf', value="#{csrf_token}")
+					input(type='hidden', name='startupId', value="#{startup.id}")
+					input(type='hidden', name='startupName', value="#{startup.name}")
+					input(type='hidden', name='founderEmail', value="#{founder.email}")
+					input(type='hidden', name='founderName', value="#{founder.name}")
+					input(type='hidden', name='founderId', value="#{founder.id}")
+
+					.modal-body
+						mixin textarea("Your Message", "mailMessage", "span6", "6", "", "I think that "+startup.name+" is an interesting startup!", true, "620")
+						.loading.hide
+					.modal-footer
+						button(class="btn btn-wide btn-embossed",data-dismiss="modal") Cancel
+						button(class="btn btn-wide btn-danger btn-embossed",id="submitSendMail")
+							i.fui-mail
+								span SendMail
+

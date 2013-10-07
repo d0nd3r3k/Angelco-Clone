@@ -158,7 +158,7 @@ exports.setType = function (req, res) {
   
   user.type = req.body.type
   user.save(function(){
-    mailer.send('welcome', user)
+    mailer.send('welcome', user, "Welcome to Arab Angels", user.mail)
     res.statusCode = 307
     return res.redirect('/users/'+req.user.id)
   })  
@@ -329,6 +329,25 @@ exports.addInvestment = function(req, res){
           res.json({responseText: startup[0].id})
         } 
   })
-
 }
+
+/**
+ * Is Interested
+ */
+
+exports.isInterested = function(req, res){
+
+      var user = req.user
+      user.startupName = req.body.startupName
+      user.startupId = req.body.startupId
+      user.founderId = req.body.founderId
+      user.founderName = req.body.founderName
+      user.founderEmail = req.body.founderEmail
+      user.message = req.body.mailMessage
+          
+      mailer.send('interested', user, "An Angel Investor is interested in your startup!", user.founderEmail)
+      res.writeHead(200)
+      return res.end()
+}
+
 
