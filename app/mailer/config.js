@@ -9,7 +9,6 @@ smtpTrans = nodemailer.createTransport('SMTP', {
       }
   })
 exports.send = function(template, user){
-  console.log(user)
   jade.renderFile(__dirname+'/templates/'+template+'.jade',{user:user}, function(err, mail){
     mailOpts = {
         from: 'Arab Angels <Donald@arabangels.org>',
