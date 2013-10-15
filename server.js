@@ -13,7 +13,7 @@ var express = require('express')
 
 // Load configurations
 // if test env, load example file
-var env = process.env.NODE_ENV || 'development'
+var env = process.env.NODE_ENV || 'production'
   , config = require('./config/config')[env]
   , mongoose = require('mongoose')
 
