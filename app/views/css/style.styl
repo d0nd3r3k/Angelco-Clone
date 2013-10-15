@@ -19,6 +19,14 @@ border-bottom-radius()
   border-bottom-right-radius arguments
   border-bottom-left-radius arguments
 
+border-top-radius()
+  -webkit-border-top-right-radius arguments
+  -webkit-border-top-left-radius arguments
+  -moz-border-radius-topright arguments
+  -moz-border-radius-topleft arguments
+  border-top-right-radius arguments
+  border-top-left-radius arguments
+
 animation()
 	-webkit-animation arguments
 	-moz-animation arguments
@@ -72,10 +80,33 @@ ul.links
 
 ul.links li
 	display inline
-	margin-left 12px
+	margin-left 8px
+.dropdown ul.dropdown-menu li
+	margin-left 0	
+
+.dropdown-menu, .open > .dropdown-menu
+	margin-top 20px
+	border-radius(0 0 8px 8px)
+	border 2px solid #bdc3c7
+	border-top none
+	background white
+
+	
+.dropdown-menu li:first-child > a
+	border-radius(0)	
+
+.mini-img
+	height 24px
+	border-radius(50%)
+	height 32px
+	margin-top -7px
+	
+.dropdown .caret
+	margin-left 6px	
 
 ul.links li a:hover
-	text-decoration underline
+	text-decoration 
+	color aa-dark-green
 
 .form-search
 	float left
@@ -795,3 +826,7 @@ ul.thumbnails
 	width 15px	
 i.fui-mail span
 	margin-left 6px	
+.dropdown
+	font-weight 700	
+.nav-tabs
+	border-bottom none	

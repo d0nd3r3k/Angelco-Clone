@@ -10,7 +10,6 @@
 						i.fui-search
 					input(type="text", name='name',class="typehead small search-query", placeholder="Search")
 			
-			- var name
 			- if (!req.isAuthenticated())
 				ul.links
 						li
@@ -18,12 +17,32 @@
 						li
 							a(href="/login", class="auth login") Log In
 			- else
-				name = req.user.name.toLowerCase().replace(/\ /g, ".")
-				ul.links
-						li
-							a(href="/users/"+req.user.id, class="auth") Profile
-						li
-							a(href="/logout", class="auth") Logout
+				name = req.user.name
+				- var provider = req.user.provider
+				- if(req.user.photo !== undefined )
+					if(req.user.photo !== '')
+						profileImage = req.user.photo.versions[1].url
+				- else
+					profileImage = ''
+					if(provider === 'google')
+						profileImage = req.user.google.picture
+					else if(provider === 'facebook')
+						profileImage = 'https://graph.facebook.com/'+req.user.facebook.username+'/picture?type=small'
+					else if(provider === 'linkedin')
+						profileImage = req.user.linkedin.pictureUrl
+
+				ul.links.aa-nav-tabs
+						if(profileImage !== "")
+									img.mini-img(src=profileImage)		
+						li.dropdown
+							a(class="dropdown-toggle", data-toggle="dropdown", href="#")  
+								span=name
+								b.caret
+							ul.dropdown-menu
+								li
+									a(href="/users/"+req.user.id) Profile
+								li
+									a(href="/logout", class="auth") Logout
 	.sub-nav
 		.container
 			ul.nav-menu
