@@ -37,6 +37,7 @@
     "picsee":"latest",
     "stylus":"latest",
     "nib": "latest",
-    "nodemailer":"latest"
+    "nodemailer":"latest",
+    "node-uuid":"latest"
   }
 }

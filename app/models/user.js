@@ -39,6 +39,7 @@ var UserSchema = new Schema({
   facebook: {},
   linkedin: {},
   google: {},
+  verified: {type: Boolean, default: false},
   type: { type: String, default: '' },
   startups: {type: []},
   investments: {type: []}

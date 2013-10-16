@@ -8,8 +8,8 @@ smtpTrans = nodemailer.createTransport('SMTP', {
           pass: "zer0mstr" 
       }
   })
-exports.send = function(template, user, subject, sendTo){
-  jade.renderFile(__dirname+'/templates/'+template+'.jade',{user:user}, function(err, mail){
+exports.send = function(template, user, subject, sendTo, verificationUrl){
+  jade.renderFile(__dirname+'/templates/'+template+'.jade',{user:user, verificationUrl: verificationUrl}, function(err, mail){
     mailOpts = {
         from: 'Arab Angels <Donald@arabangels.org>',
         to: sendTo,

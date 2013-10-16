@@ -5,6 +5,7 @@
 
 var mongoose = require('mongoose')
   , User = mongoose.model('User')
+  , verificationTokenModel = mongoose.model('VerificationToken')
   , Startup = mongoose.model('Startup')
   , utils = require('../../lib/utils')
   , async = require('async')
@@ -92,6 +93,7 @@ exports.session = login
 exports.create = function (req, res) {
   var user = new User(req.body)
   user.provider = 'local'
+
   user.save(function (err) {
     if (err) {
       return res.render('users/signup', {
@@ -152,17 +154,18 @@ exports.user = function (req, res, next, id) {
  */
 
 exports.setType = function (req, res) {
-  
-
   var user = req.user
-  
-  user.type = req.body.type
-  user.save(function(){
-    mailer.send('welcome', user, "Welcome to Arab Angels", user.mail)
-    res.statusCode = 307
-    return res.redirect('/users/'+req.user.id)
-  })  
-
+  var verificationToken = new verificationTokenModel({_userId: user._id});
+  verificationToken.createVerificationToken(function (err, token) {
+    var verificationUrl = req.protocol + "://" + req.get('host') + "/verify/" + token
+    if (err) return console.log("Couldn't create verification token", err);
+    user.type = req.body.type
+    user.save(function(){
+      mailer.send('welcome', user, "Welcome to Arab Angels", user.email, verificationUrl)
+      res.statusCode = 307
+      return res.redirect('/users/'+req.user.id)
+    })
+  })
 }
 
 
@@ -349,5 +352,38 @@ exports.isInterested = function(req, res){
       res.writeHead(200)
       return res.end()
 }
+
+/**
+ * Users Settings
+ */
+
+exports.settings = function(req, res){
+  var user = req.user
+  console.log(user)
+      res.statusCode = 307
+      res.render('users/settings', {
+        title: user.name,
+        user: user
+    })
+}
+
+/**
+ * Users Email Verification 
+ */
+exports.verify = function(req, res) {
+    var token = req.params.token
+    verificationTokenModel.findOne({token: token}, function (err, doc){
+        User.findOne({_id: doc._userId}, function (err, user) {
+            user.verified = true
+            user.save(function(err) {
+              res.statusCode = 307
+              res.redirect('/users/'+user.id)
+            })
+        })
+    })
+}
+
+
+
 
 

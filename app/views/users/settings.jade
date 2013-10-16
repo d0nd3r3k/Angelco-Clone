@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+	include ../nav
+	include ../mixins
+
+	- var name = user.name
+	- var type = user.type
+	- var provider = user.provider
+	- var isUser = false
+	- if(user.id === req.user.id)
+		isUser = true
+
+	.profile-wrapper
+		.profile.container
+				.profile-content
+
+					h3 Settings
+					hr

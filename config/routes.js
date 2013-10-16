@@ -30,8 +30,10 @@ module.exports = function (app, passport) {
     }), users.session)
   app.post('/users/type', auth.requiresLogin, users.setType)
   app.post('/users/edit', auth.requiresLogin, users.editUser)
-  
+  app.get('/user/settings',auth.requiresLogin, users.settings)
+
   app.get('/users/:userId',auth.requiresLogin, users.show)
+  app.get('/verify/:token', auth.requiresLogin, users.verify)
   app.get('/auth/facebook', passport.authenticate('facebook', { scope: [ 'email', 'user_about_me'], failureRedirect: '/login' }), users.signin)
   app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), users.authCallback)
   app.get('/auth/linkedin', passport.authenticate('linkedin', { failureRedirect: '/login' }), users.signin)
