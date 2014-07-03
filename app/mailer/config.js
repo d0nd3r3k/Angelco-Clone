@@ -4,8 +4,8 @@ var nodemailer = require('nodemailer'),
 smtpTrans = nodemailer.createTransport('SMTP', {
       service: 'Gmail',
       auth: {
-          user: "donald@arabangels.org",
-          pass: "zer0mstr" 
+          user: "email@gmail.com",
+          pass: "password" 
       }
   })
 exports.send = function(template, user, subject, sendTo, verificationUrl){
